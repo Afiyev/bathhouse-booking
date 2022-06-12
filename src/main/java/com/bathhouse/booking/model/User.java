@@ -21,6 +21,9 @@ public class User {
     @Column
     private String password;
 
+    @Column
+    private boolean enabled;
+
     @ManyToMany
     @JoinTable(
             name = "user_roles",
@@ -29,7 +32,26 @@ public class User {
     )
     private Set<Role> roles;
 
+    @OneToMany(mappedBy = "user")
+    private Set<Reservation> reservations;
+
     public User() {
+    }
+
+    public boolean isEnabled() {
+        return enabled;
+    }
+
+    public void setEnabled(boolean enabled) {
+        this.enabled = enabled;
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
     }
 
     public int getId() {
