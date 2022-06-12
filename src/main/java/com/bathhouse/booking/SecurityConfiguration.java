@@ -1,4 +1,4 @@
-package com.bathhouse.booking.service;
+package com.bathhouse.booking;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
