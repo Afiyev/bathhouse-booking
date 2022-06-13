@@ -1,11 +1,18 @@
 package com.bathhouse.booking.model;
 
+import com.vladmihalcea.hibernate.type.array.ListArrayType;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "schedules")
+@TypeDef(
+        name = "list-array",
+        typeClass = ListArrayType.class
+)
 public class Schedule {
 
     @Id
@@ -13,14 +20,23 @@ public class Schedule {
     @Column
     private int id;
 
-    @Column(columnDefinition = "boolean[]")
-    @Type(type = "com.vladmihalcea.hibernate.type.array.BooleanArrayType")
-    private boolean[] hours;
+    @Type(type = "list-array")
+    @Column(name = "hours",
+            columnDefinition = "BOOLEAN[]")
+    private List<Boolean> hours;
 
     @OneToOne(mappedBy = "schedule")
     private Cabin cabin;
 
     public Schedule() {
+    }
+
+    public List<Boolean> getHours() {
+        return hours;
+    }
+
+    public void setHours(List<Boolean> hours) {
+        this.hours = hours;
     }
 
     public int getId() {
@@ -29,14 +45,6 @@ public class Schedule {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public boolean[] getHours() {
-        return hours;
-    }
-
-    public void setHours(boolean[] hours) {
-        this.hours = hours;
     }
 
     public Cabin getCabin() {

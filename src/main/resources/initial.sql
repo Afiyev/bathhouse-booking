@@ -46,7 +46,7 @@ CREATE TABLE bathhouses(
 CREATE TABLE cabins(
                        id SERIAL NOT NULL,
                        bathhouse_id INT NOT NULL,
-                       type VARCHAR(32) NOT NULL,
+                       capacity VARCHAR(32) NOT NULL,
                        price INT NOT NULL,
                        schedule_id INT NOT NULL,
                        PRIMARY KEY (id),

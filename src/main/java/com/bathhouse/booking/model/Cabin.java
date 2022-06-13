@@ -13,16 +13,10 @@ public class Cabin {
     private int id;
 
     @Column
-    private String type;
+    private String capacity;
 
     @Column
     private int price;
-
-    @Column
-    private int bathhouse_id;
-
-    @Column
-    private int schedule_id;
 
     @ManyToOne
     @JoinColumn(name = "bathhouse_id")
@@ -46,22 +40,6 @@ public class Cabin {
         this.reservations = reservations;
     }
 
-    public int getBathhouse_id() {
-        return bathhouse_id;
-    }
-
-    public void setBathhouse_id(int bathhouse_id) {
-        this.bathhouse_id = bathhouse_id;
-    }
-
-    public int getSchedule_id() {
-        return schedule_id;
-    }
-
-    public void setSchedule_id(int schedule_id) {
-        this.schedule_id = schedule_id;
-    }
-
     public int getId() {
         return id;
     }
@@ -70,12 +48,12 @@ public class Cabin {
         this.id = id;
     }
 
-    public String getType() {
-        return type;
+    public String getCapacity() {
+        return capacity;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setCapacity(String capacity) {
+        this.capacity = capacity;
     }
 
     public int getPrice() {

@@ -13,12 +13,6 @@ public class Reservation {
     private int id;
 
     @Column
-    private int user_id;
-
-    @Column
-    private int cabin_id;
-
-    @Column
     private LocalTime time;
 
     @Column
@@ -41,22 +35,6 @@ public class Reservation {
 
     public void setId(int id) {
         this.id = id;
-    }
-
-    public int getUser_id() {
-        return user_id;
-    }
-
-    public void setUser_id(int user_id) {
-        this.user_id = user_id;
-    }
-
-    public int getCabin_id() {
-        return cabin_id;
-    }
-
-    public void setCabin_id(int cabin_id) {
-        this.cabin_id = cabin_id;
     }
 
     public LocalTime getTime() {

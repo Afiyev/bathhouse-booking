@@ -22,12 +22,23 @@ public class Bathhouse {
     private String phone_number;
 
     @Column
+    private String city;
+
+    @Column
     private double rating;
 
     @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL)
     private Set<Cabin> cabins;
 
     public Bathhouse() {
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public int getId() {
