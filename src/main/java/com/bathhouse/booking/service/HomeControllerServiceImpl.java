@@ -12,6 +12,6 @@ public class HomeControllerServiceImpl implements HomeControllerService{
 
     @Override
     public int countBathhouseByCity(String city) {
-        return bathhouseRepository.countBathhouseByCity(city);
+        return bathhouseRepository.countAllByCity(city);
     }
 }
