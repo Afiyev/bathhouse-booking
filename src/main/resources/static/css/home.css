@@ -2,6 +2,17 @@
     background-color: #003580;
     margin-left: 12%;
     margin-right: 12%;
+    padding: 20px 7%;
+    position: sticky;
+    top: 0;
+    z-index: 2;
+    height: 36px;
+}
+
+.header2{
+    background-color: #003580;
+    margin-left: 12%;
+    margin-right: 12%;
     padding: 40px 7% 15px;
 }
 
@@ -60,6 +71,8 @@
     height: 60px;
     padding-right: 7%;
     padding-left: 7%;
+    position: sticky;
+    top: 76px;
 }
 
 #search_inner-div{
@@ -67,8 +80,8 @@
     background-color: #feba02;
     border-radius: 5px;
     height: 60px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 4px;
+    padding-right: 4px;
     display: flex;
 
 }
@@ -149,3 +162,57 @@
 }
 
 .show {display:block;}
+
+.empty-line{
+    box-shadow:  8px 8px 8px 8px rgba(0,0,0,0.2);
+    font-size: 3px;
+    text-align: center;
+    color: white;
+    margin: 100px 19%;
+    background-color: #003580;
+    border-radius: 2px;
+    height: 5px;
+    line-height:5px;
+}
+
+.cities{
+    margin-right: 19%;
+    margin-left: 19%;
+    display: flex;
+}
+
+.p{
+    margin-right: 19%;
+    margin-left: 19%;
+    font-family: Tahoma;
+    font-size: 24px;
+    color: #2B2730;
+    font-weight: bolder;
+    margin-bottom: 30px;
+}
+.image-button{
+    border: none;
+    background-color: white;
+    padding: 0;
+}
+
+.city-images{
+    width: 100%;
+    height: 200px;
+    border-radius: 5px;
+}
+
+.city1{
+    width: 32%;
+    margin: auto;
+    display: inline-block;
+    overflow: hidden;
+}
+
+.city1 img{
+    transition: transform .5s ease;
+}
+
+.city1:hover img{
+    transform: scale(1.1);
+}

@@ -10,7 +10,7 @@
     <script src="js/my-scripts.js"></script>
 </head>
 <body>
-    <header class = "header">
+    <div class = "header">
         <div class = "header_logo">
                 BathhouseBooking.com
         </div>
@@ -21,12 +21,12 @@
             &nbsp
             <button class="register-login" type="button"> Sign in </button>
         </div>
-        <br><br><br><br><br><br><br><br><br>
-        <div>
-            <p id="p1"> Find your bathhouse </p>
-            <p id="p2"> Set search parameters </p>
-        </div>
-    </header>
+    </div>
+    <div class="header2">
+        <br><br><br><br><br><br><br>
+        <p id="p1"> Find your bathhouse </p>
+        <p id="p2"> Set search parameters </p>
+    </div>
     <div class="search_outer-div">
         <form id="search_inner-div" autocomplete="off">
             <input id="search_input-1" list="cities" placeholder="City"
@@ -75,6 +75,29 @@
             </datalist>
             <button form="search_inner-div" type="submit" id="search_button"> Search</button>
         </form>
+    </div>
+
+    <div class="empty-line">
+        <span> Give me the job!!!!!!!!!!!</span>
+    </div>
+
+    <p class="p">Browse by cities</p>
+    <div class="cities">
+        <div class="city1">
+            <button class="image-button" type="button">
+                <img class="city-images" src="images/almaty.jpg" alt="Almaty">
+            </button>
+        </div>
+        <div class="city1">
+            <button class="image-button" type="button">
+                <img class="city-images" src="images/shieli.jpeg" alt="Shieli">
+            </button>
+        </div>
+        <div class="city1">
+            <button class="image-button" type="button">
+                <img class="city-images" src="images/astana.jpg" alt="Astana">
+            </button>
+        </div>
     </div>
 </body>
 </html>
