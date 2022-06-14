@@ -27,10 +27,21 @@ public class Bathhouse {
     @Column
     private double rating;
 
+    @Column
+    private String description;
+
     @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL)
     private Set<Cabin> cabins;
 
     public Bathhouse() {
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     public String getCity() {

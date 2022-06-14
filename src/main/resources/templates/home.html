@@ -31,7 +31,7 @@
         <form id="search_inner-div" autocomplete="off">
             <input id="search_input-1" list="cities" placeholder="City"
                    pattern="Shieli|Qyzylorda|Almaty|Nur-Sultan|Shymkent|Taraz"
-                   title='Incorrect input : Please select from list'/>
+                   title='Please select from list'/>
             <datalist id="cities">
                 <option value="Shieli">
                 <option value="Qyzylorda">
@@ -48,11 +48,11 @@
 
                 <div id="search_dropdown1" class="search_dropdown">
                     <label for="time">Time</label>
-                    <input id="time" type="time" step="3600" min="12:00" max="23:00"/>
+                    <input id="time" type="time" step="3600" min="12:00" max="23:00" title="Opening hours : 12:00 - 23:00"/>
                     <br>
                     <br>
                     <label for="duration">Duration</label>
-                    <input id="duration" type="number" min="1" max="3"/>
+                    <input id="duration" type="number" min="1" max="3" title="Maximum duration : 3 hours"/>
                 </div>
             </div>
 
@@ -61,7 +61,7 @@
 
             <input id="search_input-3"  list="cabin-types" placeholder="Cabin capacity"
                    pattern="Small|Medium|Big"
-                   title='Incorrect input : Please select from list'/>
+                   title='Please select from list'/>
             <datalist id="cabin-types">
                 <option value="Small">
                     <span> For 2 people </span>
