@@ -1,0 +1,102 @@
+.header{
+    background-color: #003580;
+    margin-left: 12%;
+    margin-right: 12%;
+    padding: 40px 7% 15px;
+}
+
+.header_logo{
+    float: left;
+    color: white;
+    font-family: Georgia;
+    font-weight: bolder;
+    font-size: 30px;
+}
+
+.header_user-action{
+    float: right;
+    height: 36px;
+}
+
+.header_user-action, .header_logo{
+    display: inline-block;
+}
+
+.list-property-button{
+    height: 36px;
+    border-color: white;
+    background-color: #003580;
+    color: white;
+    font-family: Georgia;
+    font-size: 14px;
+}
+
+.register-login{
+    height: 36px;
+    color: #003580;
+    font-family: Georgia;
+    font-size: 14px;
+}
+
+#p1{
+    font-family: Tahoma;
+    font-size: 36px;
+    font-weight: bolder;
+    color: white;
+    margin-bottom: 0px;
+}
+
+#p2{
+    font-family: Tahoma;
+    font-size: 24px;
+    margin-top: 0px;
+    color: white;
+}
+
+.search_outer-div{
+    background: linear-gradient(to bottom, #003580 0%, #003580 50%, white 50%, white 100%);
+    margin-left: 12%;
+    margin-right: 12%;
+    height: 60px;
+    padding-right: 7%;
+    padding-left: 7%;
+}
+
+.search_inner-div{
+    width: 100%;
+    background-color: #feba02;
+    border-radius: 5px;
+    height: 60px;
+    padding-left: 5px;
+    padding-right: 5px;
+    display: flex;
+}
+
+/*#search_form{*/
+/*    display: flex;*/
+/*    margin: auto;*/
+/*    width: 100%;*/
+/*    padding: 0px;*/
+/*}*/
+
+#search_input-1, #search_input-2, #search_input-3{
+    width: 29%;
+    border: none;
+    margin: auto;
+    height: 50px;
+
+    font-family: Georgia;
+    font-size: 14px;
+}
+
+#search_button{
+    width: 10%;
+    background-color: #009fe3;
+    color: white;
+    height: 50px;
+    margin: auto;
+    border: none;
+
+    font-family: Georgia;
+    font-size: 14px;
+}

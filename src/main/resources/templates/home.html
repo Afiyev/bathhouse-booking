@@ -2,9 +2,53 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>
+        BathhouseBooking | Book your health | BathhouseBooking.com
+    </title>
+    <link rel="shortcut icon" href="images/sauna.png" type="image/png">
+    <link rel="stylesheet" href="css/home.css">
 </head>
 <body>
-
+    <header class = "header">
+        <div class = "header_logo">
+                BathhouseBooking.com
+        </div>
+        <div class = "header_user-action">
+            <button class ="list-property-button" type="button"> List your property </button>
+            &nbsp
+            <button class="register-login" type="button"> Register </button>
+            &nbsp
+            <button class="register-login" type="button"> Sign in </button>
+        </div>
+        <br><br><br><br><br><br><br><br><br>
+        <div>
+            <p id="p1"> Find your bathhouse </p>
+            <p id="p2"> Set search parameters </p>
+        </div>
+    </header>
+    <div class="search_outer-div">
+        <div class="search_inner-div">
+<!--            <form id="search_form">-->
+            <input id="search_input-1" list="cities" placeholder="City" />
+            <datalist id="cities">
+                <option value="Shieli">
+                <option value="Qyzylorda">
+                <option value="Almaty">
+                <option value="Nur-Sultan">
+                <option value="Shymkent">
+                <option value="Taraz">
+            </datalist>
+            <input id="search_input-2" type="time"  step="3600" min="12:00" max="23:00" placeholder="Time" />
+            <input id="search_input-3"  list="cabin-types" placeholder="Cabin capacity" />
+            <datalist id="cabin-types">
+                <option value="2 person cabin">
+                <option value="3 person cabin">
+                <option value="4 person room">
+            </datalist>
+<!--            </form>-->
+<!--            form="search_form"-->
+            <button  type="submit" id="search_button"> Search</button>
+        </div>
+    </div>
 </body>
 </html>
