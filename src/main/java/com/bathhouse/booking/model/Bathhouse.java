@@ -30,10 +30,21 @@ public class Bathhouse {
     @Column
     private String description;
 
+    @Column
+    private String image;
+
     @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL)
     private Set<Cabin> cabins;
 
     public Bathhouse() {
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public String getDescription() {

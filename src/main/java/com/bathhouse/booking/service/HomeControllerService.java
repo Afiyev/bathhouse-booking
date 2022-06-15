@@ -1,5 +1,11 @@
 package com.bathhouse.booking.service;
 
+import com.bathhouse.booking.model.Bathhouse;
+
+import java.util.List;
+
 public interface HomeControllerService {
-    int countBathhouseByCity(String city);
+    List<Bathhouse> findAllBathhousesByCity(String city);
+
+    List<Integer> getListOfCountsOfBathhouses();
 }

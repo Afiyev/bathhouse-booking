@@ -142,7 +142,7 @@
     border-color: #003580;
     width: 70%;
     box-shadow: 8px 8px 16px 8px rgba(0,0,0,0.2);
-    z-index: 1;
+    z-index: 2;
     font-size: 14px;
     color: #2B2730;
     padding: 10px 10px 10px 20px;
@@ -179,6 +179,13 @@
     margin-right: 19%;
     margin-left: 19%;
     display: flex;
+    margin-bottom: 9px;
+}
+
+.cities-2{
+    margin-right: 19%;
+    margin-left: 19%;
+    display: flex;
 }
 
 .p{
@@ -190,11 +197,7 @@
     font-weight: bolder;
     margin-bottom: 30px;
 }
-.image-button{
-    border: none;
-    background-color: white;
-    padding: 0;
-}
+
 
 .city-images{
     width: 100%;
@@ -207,6 +210,17 @@
     margin: auto;
     display: inline-block;
     overflow: hidden;
+}
+
+.city1-description{
+    z-index: 1;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 5px;
+    color: white;
+    font-size: 16px;
+    font-family: Georgia;
+    font-weight: bolder;
 }
 
 .city1 img{

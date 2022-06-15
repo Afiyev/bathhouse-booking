@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>
@@ -81,23 +82,66 @@
         <span> Give me the job!!!!!!!!!!!</span>
     </div>
 
-    <p class="p">Browse by cities</p>
+    &nbsp&nbsp<p class="p">Browse by cities</p>
     <div class="cities">
         <div class="city1">
-            <button class="image-button" type="button">
+            <div class="city1-description">
+                <p> Almaty </p>
+                <p th:text="${countOfBathhouses.get(0)} + ' properties'"/>
+            </div>
+            <a href="/" >
                 <img class="city-images" src="images/almaty.jpg" alt="Almaty">
-            </button>
+            </a>
         </div>
         <div class="city1">
-            <button class="image-button" type="button">
+            <div class="city1-description">
+                <p> Shieli </p>
+                <p th:text="${countOfBathhouses.get(1)} + ' properties'"/>
+            </div>
+            <a href="/" >
                 <img class="city-images" src="images/shieli.jpeg" alt="Shieli">
-            </button>
+            </a>
         </div>
         <div class="city1">
-            <button class="image-button" type="button">
+            <div class="city1-description">
+                <p> Nursultan </p>
+                <p th:text="${countOfBathhouses.get(2)} + ' properties'"/>
+            </div>
+            <a href="/" >
                 <img class="city-images" src="images/astana.jpg" alt="Astana">
-            </button>
+            </a>
         </div>
     </div>
+    <div class="cities-2">
+            <div class="city1">
+                <div class="city1-description">
+                    <p> Shymkent </p>
+                    <p th:text="${countOfBathhouses.get(3)} + ' properties'"/>
+                </div>
+                <a href="/" >
+                    <img class="city-images" src="images/shymkent.jpg" alt="Almaty">
+                </a>
+            </div>
+            <div class="city1">
+                <div class="city1-description">
+                    <p> Qyzylorda </p>
+                    <p th:text="${countOfBathhouses.get(4)} + ' properties'"/>
+                </div>
+                <a href="/" >
+                    <img class="city-images" src="images/qyzylorda.jpg" alt="Qyzylorda">
+                </a>
+            </div>
+            <div class="city1">
+                <div class="city1-description">
+                    <p> Taraz </p>
+                    <p th:text="${countOfBathhouses.get(5)} + ' properties'"/>
+                </div>
+                <a href="/" >
+                    <img class="city-images" src="images/taraz.jpg" alt="Taraz">
+                </a>
+            </div>
+    </div>
+    <br><br><br>
+    &nbsp&nbsp<p class="p">These popular destinations have a lot to offer</p>
 </body>
 </html>
