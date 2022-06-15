@@ -5,7 +5,7 @@
     padding: 20px 7%;
     position: sticky;
     top: 0;
-    z-index: 2;
+    z-index: 10;
     height: 36px;
 }
 
@@ -73,6 +73,7 @@
     padding-left: 7%;
     position: sticky;
     top: 76px;
+    z-index: 10;
 }
 
 #search_inner-div{
@@ -142,7 +143,7 @@
     border-color: #003580;
     width: 70%;
     box-shadow: 8px 8px 16px 8px rgba(0,0,0,0.2);
-    z-index: 2;
+    z-index: 10;
     font-size: 14px;
     color: #2B2730;
     padding: 10px 10px 10px 20px;
@@ -213,13 +214,13 @@
 }
 
 .city1-description{
-    z-index: 1;
     position: absolute;
     margin-left: 10px;
     margin-top: 5px;
     color: white;
     font-size: 16px;
     font-family: Georgia;
+    z-index: 1;
     font-weight: bolder;
 }
 
@@ -229,4 +230,48 @@
 
 .city1:hover img{
     transform: scale(1.1);
+}
+
+
+.rec-table{
+    width: 62%;
+    margin-left: 19%;
+    margin-right: 19%;
+    padding: 10px;
+    border: 1px solid lightgray;
+    border-radius: 4px;
+}
+
+
+.rec-bath{
+    display: flex;
+    width: 100%;
+}
+
+.bath-img{
+    display: inline-block;
+    margin: auto;
+    width: 26%;
+    height: 180px;
+}
+.bath-img img{
+    height: 180px;
+    width: 100%;
+    border-radius: 8px  ;
+}
+
+.bath-description{
+    display: inline-block;
+    margin: auto;
+    height: 180px;
+    background-color: #feba02;
+    width: 48%;
+}
+
+.bath-rating{
+    display: inline-block;
+    margin: auto;
+    height: 180px;
+    background-color: #003580;
+    width: 22%;
 }

@@ -143,5 +143,24 @@
     </div>
     <br><br><br>
     &nbsp&nbsp<p class="p">These popular destinations have a lot to offer</p>
+
+    <table class="rec-table" th:each="bath : ${recommendedBathhouses}">
+        <tr>
+            <td>
+                <div class="rec-bath">
+                    <div class="bath-img">
+                        <img th:src="${bath.image}" alt="bath-image">
+                    </div>
+                    <div class="bath-description">
+
+                    </div>
+
+                    <div class="bath-rating">
+
+                    </div>
+                </div>
+            </td>
+        </tr>
+    </table>
 </body>
 </html>
