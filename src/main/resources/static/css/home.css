@@ -162,7 +162,7 @@
     float: right;
 }
 
-.show {display:block;}
+.search_dropdown.show {display:block;}
 
 .empty-line{
     box-shadow:  8px 8px 8px 8px rgba(0,0,0,0.2);
@@ -252,10 +252,10 @@
     display: inline-block;
     margin: auto;
     width: 26%;
-    height: 180px;
+    height: 200px;
 }
 .bath-img img{
-    height: 180px;
+    height: 200px;
     width: 100%;
     border-radius: 8px  ;
 }
@@ -263,7 +263,7 @@
 .bath-description{
     display: inline-block;
     margin: auto;
-    height: 180px;
+    height: 200px;
     background-color: #feba02;
     width: 48%;
 }
@@ -271,7 +271,24 @@
 .bath-rating{
     display: inline-block;
     margin: auto;
-    height: 180px;
+    height: 200px;
     background-color: #003580;
     width: 22%;
 }
+
+.book_drop_class1, .book_drop_class2, .book_drop_class3, .book_drop_class4, .book_drop_class5{
+    display: none;
+    position: absolute;
+    z-index: 5;
+    background-color: #2B2730;
+    width: 61%;
+    height: 220px;
+    margin-left: 19%;
+    margin-right: 20%;
+    margin-top: 200px;
+}
+
+.book_drop_class1.show, .book_drop_class2.show, .book_drop_class3.show, .book_drop_class4.show, .book_drop_class5.show{
+      display: block;
+}
+

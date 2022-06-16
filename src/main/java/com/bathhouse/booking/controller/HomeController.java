@@ -50,6 +50,8 @@ public class HomeController {
         recommendedBathhouses.add(bathhouse);
         recommendedBathhouses.add(bathhouse);
         recommendedBathhouses.add(bathhouse);
+        recommendedBathhouses.add(bathhouse);
+        recommendedBathhouses.add(bathhouse);
 
 
         model.addAttribute("countOfBathhouses", countOfBathhouses);

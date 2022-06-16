@@ -45,7 +45,7 @@
 
 
             <div id="search_input-2">
-                <button type="button" class="drop-button" onclick="myFunction()">Time and duration</button>
+                <button type="button" class="drop-button" onclick="myFunction('search_dropdown1')">Time and duration</button>
 
                 <div id="search_dropdown1" class="search_dropdown">
                     <label for="time">Time</label>
@@ -156,11 +156,16 @@
                     </div>
 
                     <div class="bath-rating">
+                        <button type="button"
+                                th:attr="onclick='myFunction(\'' + ${#ids.next('book_drop_id')}+  '\');'">Time and duration</button>
 
                     </div>
                 </div>
             </td>
         </tr>
+        <div th:id="${#ids.seq('book_drop_id')}"  th:class="${#ids.seq('book_drop_class')}">
+
+        </div>
     </table>
 </body>
 </html>
