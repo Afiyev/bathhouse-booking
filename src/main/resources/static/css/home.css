@@ -166,7 +166,7 @@
 
 .empty-line{
     box-shadow:  8px 8px 8px 8px rgba(0,0,0,0.2);
-    font-size: 3px;
+    font-size: 2px;
     text-align: center;
     color: white;
     margin: 100px 19%;
@@ -288,7 +288,12 @@
 }
 
 #des-location{
+    font-size: 13px;
     font-weight: bolder;
+}
+
+#des-description{
+    font-size: 14px;
 }
 
 
@@ -296,8 +301,44 @@
     display: inline-block;
     margin: auto;
     height: 200px;
-    background-color: #003580;
     width: 18%;
+    padding-right: 14px;
+}
+
+#rating-t{
+    font-size: 18px;
+    font-weight: bolder;
+    text-align: right;
+    font-family: Georgia;
+    margin-bottom: 7px;
+    margin-top: 0;
+}
+
+#rating-n{
+    font-size: 22px;
+    font-weight: bolder;
+    font-family: Georgia;
+    color: white;
+    text-align: center;
+    width: 47px;
+    float: right;
+    margin-top: 0;
+    padding: 4px 5px 5px;
+    background-color: #052C67;
+    border-radius: 6px;
+}
+
+#rating-b{
+    float: right;
+    font-size: 14px;
+    font-family: Georgia;
+    background-color: #009fe3;
+    color: white;
+    height: 45px;
+    width: 80%;
+    border-radius: 6px;
+    margin-top: 55px;
+    border: none;
 }
 
 .book_drop_class1, .book_drop_class2, .book_drop_class3, .book_drop_class4, .book_drop_class5{

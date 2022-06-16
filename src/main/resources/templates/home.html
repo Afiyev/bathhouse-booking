@@ -155,15 +155,17 @@
                         <p id="des-name" th:text="${bath.name}"/>
                         <p id="des-location" th:text="${bath.city} + ', ' + ${bath.address}"/>
                         <p id="des-description" th:text="${bath.description}"/>
-                        <a  th:href="'tel:' + ${bath.phone_number}">
+                        <a  style="color: #2B2730" th:href="'tel:' + ${bath.phone_number}">
                             <p id="des-phone" th:text="'Phone number : ' + ${bath.phone_number}"/>
                         </a>
 
                     </div>
 
                     <div class="bath-rating">
-                        <button type="button"
-                                th:attr="onclick='myFunction(\'' + ${#ids.next('book_drop_id')}+  '\');'">Time and duration</button>
+                        <p id="rating-t">Rating</p>
+                        <p id="rating-n" th:text="${bath.rating}"></p>
+                        <button type="button" id="rating-b"
+                                th:attr="onclick='myFunction(\'' + ${#ids.next('book_drop_id')}+  '\');'">Book now</button>
 
                     </div>
                 </div>
