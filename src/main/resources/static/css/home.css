@@ -164,18 +164,6 @@
 
 .search_dropdown.show {display:block;}
 
-.empty-line{
-    box-shadow:  8px 8px 8px 8px rgba(0,0,0,0.2);
-    font-size: 2px;
-    text-align: center;
-    color: white;
-    margin: 100px 19%;
-    background-color: #003580;
-    border-radius: 2px;
-    height: 5px;
-    line-height:5px;
-}
-
 .cities{
     margin-right: 19%;
     margin-left: 19%;
@@ -199,6 +187,7 @@
 
 .p{
     margin-bottom: 30px;
+    margin-top: 150px;
 }
 
 .p2{
