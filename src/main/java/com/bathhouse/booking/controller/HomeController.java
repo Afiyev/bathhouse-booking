@@ -12,7 +12,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Controller
 public class HomeController {
@@ -41,7 +43,7 @@ public class HomeController {
 
         Bathhouse bathhouse = new Bathhouse();
         bathhouse.setImage("/images/bath1.jpg");
-        bathhouse.setAddress("Jessica Fletcher (Murder She Wrote) - 698 Candlewood Lane, Cabot Cove, Maine.");
+        bathhouse.setAddress("698 Candlewood Lane, Cabot Cove, Maine.");
         bathhouse.setCity(City.ALMATY.toString());
         bathhouse.setDescription("The history of bath in Japan begins in the 6th Century with the introduction of Buddist purification rituals. The custom was believed to cleanse the body and spirit to promote improved health using heat and steam. This why many temples in Japan have baths.");
         bathhouse.setName("Japanese Bathhouse");

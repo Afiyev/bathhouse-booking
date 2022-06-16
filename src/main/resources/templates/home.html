@@ -142,7 +142,7 @@
             </div>
     </div>
     <br><br><br>
-    &nbsp&nbsp<p class="p">These popular destinations have a lot to offer</p>
+    &nbsp&nbsp<p class="p2">These popular destinations have a lot to offer</p>
 
     <table class="rec-table" th:each="bath : ${recommendedBathhouses}">
         <tr>
@@ -152,6 +152,12 @@
                         <img th:src="${bath.image}" alt="bath-image">
                     </div>
                     <div class="bath-description">
+                        <p id="des-name" th:text="${bath.name}"/>
+                        <p id="des-location" th:text="${bath.city} + ', ' + ${bath.address}"/>
+                        <p id="des-description" th:text="${bath.description}"/>
+                        <a  th:href="'tel:' + ${bath.phone_number}">
+                            <p id="des-phone" th:text="'Phone number : ' + ${bath.phone_number}"/>
+                        </a>
 
                     </div>
 
@@ -163,6 +169,7 @@
                 </div>
             </td>
         </tr>
+        <div id="empty_div"></div>
         <div th:id="${#ids.seq('book_drop_id')}"  th:class="${#ids.seq('book_drop_class')}">
 
         </div>
