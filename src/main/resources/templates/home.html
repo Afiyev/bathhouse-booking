@@ -177,14 +177,29 @@
                 &nbsp;Available
                 <br>
             </div>
-            <div style="display: block; font-size: 14px;
-             margin-left: 55px; margin-top: 10px; padding-left: 10px; width: 150px  ;
-                border: 1px solid lightgray; margin-bottom: 15px"
-                 th:each="cabin: ${bath.cabins}">
-                <p th:text="'Cabin number:  '+ ${cabin.id}"/>
-                <p  th:text="'Cabin type:  '+ ${cabin.capacity}"/>
-                <p  th:text="'Price per hours:  '+ ${cabin.price}"/>
+            <div style="display: flex" th:each="cabin: ${bath.cabins}">
+                <div style="display: inline-block; font-size: 14px;
+                        margin-left: 53px; margin-top: 10px; padding-left: 10px; width: 150px  ;
+                        border: 1px solid lightgray; margin-bottom: 15px"
+                >
+                    <p th:text="'Cabin number:  '+ ${cabin.id}"/>
+                    <p th:text="'Cabin type:  '+ ${cabin.capacity}"/>
+                    <p th:text="'Price per hours:  '+ ${cabin.price}"/>
+                </div>
+                <div style="margin-left: 43px; margin-top: 10px; display: inline-block; width : 500px;
+                        height: 50px;  margin-bottom: 15px"
+                >
+                    <div style=" display: inline-block; "
+                        th:each="isbooked : ${(cabin.schedule).isBooked}"
+                    >
+                        <button type="button"
+                            th:attr="style=' margin-right: 5px; margin-bottom: 5px; margin-top: 2px; height: 30px;   width: 100px; border: none; color: white; font-size: 11px; background-color: ' + ${isbooked? 'red; pointer-events: none' : '#009fe3; cursor: pointer'}">
+                            A
+                        </button>
+                    </div>
+                </div>
             </div>
+
         </div>
     </table>
 </body>
