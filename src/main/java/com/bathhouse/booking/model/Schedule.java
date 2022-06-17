@@ -31,7 +31,7 @@ public class Schedule {
     private List<Integer> hours;
 
 
-    @OneToOne(mappedBy = "schedule")
+    @OneToOne(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cabin cabin;
 
     public Schedule() {

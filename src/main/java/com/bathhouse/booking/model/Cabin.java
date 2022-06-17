@@ -18,15 +18,15 @@ public class Cabin {
     @Column
     private int price;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "bathhouse_id")
     private Bathhouse bathhouse;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "schedule_id")
     private Schedule schedule;
 
-    @OneToMany(mappedBy = "cabin")
+    @OneToMany(mappedBy = "cabin",cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Reservation> reservations;
 
     public Cabin() {

@@ -33,7 +33,7 @@ public class Bathhouse {
     @Column
     private String image;
 
-    @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Cabin> cabins;
 
     public Bathhouse() {

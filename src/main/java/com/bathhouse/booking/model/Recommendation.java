@@ -11,7 +11,7 @@ public class Recommendation {
     @Column
     private int id;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "bathhouse_id")
     private Bathhouse bathhouse;
 
