@@ -32,14 +32,34 @@ public class HomeController {
         List<Bathhouse> recommendedBathhouses = homeControllerService.getRecommendedBathhouses();
 
         Schedule schedule = new Schedule();
-        List<Boolean> hours = List.of(false, true, true, false, false, false,
+        List<Boolean> isBooked = List.of(false, true, true, false, false, false,
                 true, true, false, false,false, false);
+        List<Integer> hours = List.of(12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23);
+        schedule.setIsBooked(isBooked);
         schedule.setHours(hours);
+
+        Schedule schedule1 = new Schedule();
+        List<Boolean> isBooked1 = List.of(false, true, false, true, true, false,
+                false, true, false, false,true, true);
+        List<Integer> hours1 = List.of(12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23);
+        schedule1.setIsBooked(isBooked1);
+        schedule1.setHours(hours);
 
         Cabin cabin = new Cabin();
         cabin.setCapacity(CabynCapacity.MEDIUM.toString());
         cabin.setPrice(2000);
         cabin.setSchedule(schedule);
+        cabin.setId(14);
+
+        Cabin cabin1 = new Cabin();
+        cabin1.setCapacity(CabynCapacity.SMALL.toString());
+        cabin1.setPrice(1500);
+        cabin1.setSchedule(schedule1);
+        cabin1.setId(21);
+
+        Set<Cabin> cabins = new HashSet<>();
+        cabins.add(cabin);
+        cabins.add(cabin1);
 
         Bathhouse bathhouse = new Bathhouse();
         bathhouse.setImage("/images/bath1.jpg");
@@ -49,6 +69,7 @@ public class HomeController {
         bathhouse.setName("Japanese Bathhouse");
         bathhouse.setPhone_number("+7(707) 458 56 32");
         bathhouse.setRating(4.2);
+        bathhouse.setCabins(cabins);
         recommendedBathhouses.add(bathhouse);
         recommendedBathhouses.add(bathhouse);
         recommendedBathhouses.add(bathhouse);

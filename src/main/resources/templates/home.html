@@ -169,7 +169,22 @@
         </tr>
         <div id="empty_div"></div>
         <div th:id="${#ids.seq('book_drop_id')}"  th:class="${#ids.seq('book_drop_class')}">
-
+            <div style="margin-top: 40px; font-size: 14px; margin-left: 30px; display: block;
+                 padding-left: 230px">
+                <img src="/images/red.jpg" alt="red" style="width: 16px; height: 16px"/>
+                &nbsp;Booked&nbsp;&nbsp;&nbsp;
+                <img src="/images/blue.png" alt="blue" style="width: 16px; height: 16px"/>
+                &nbsp;Available
+                <br>
+            </div>
+            <div style="display: block; font-size: 14px;
+             margin-left: 55px; margin-top: 10px; padding-left: 10px; width: 150px  ;
+                border: 1px solid lightgray; margin-bottom: 15px"
+                 th:each="cabin: ${bath.cabins}">
+                <p th:text="'Cabin number:  '+ ${cabin.id}"/>
+                <p  th:text="'Cabin type:  '+ ${cabin.capacity}"/>
+                <p  th:text="'Price per hours:  '+ ${cabin.price}"/>
+            </div>
         </div>
     </table>
 </body>

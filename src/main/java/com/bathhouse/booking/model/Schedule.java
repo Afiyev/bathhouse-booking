@@ -21,9 +21,15 @@ public class Schedule {
     private int id;
 
     @Type(type = "list-array")
-    @Column(name = "hours",
+    @Column(name = "isbooked",
             columnDefinition = "BOOLEAN[]")
-    private List<Boolean> hours;
+    private List<Boolean> isBooked;
+
+    @Type(type = "list-array")
+    @Column(name = "hours",
+            columnDefinition = "INT[]")
+    private List<Integer> hours;
+
 
     @OneToOne(mappedBy = "schedule")
     private Cabin cabin;
@@ -31,12 +37,20 @@ public class Schedule {
     public Schedule() {
     }
 
-    public List<Boolean> getHours() {
+    public List<Integer> getHours() {
         return hours;
     }
 
-    public void setHours(List<Boolean> hours) {
+    public void setHours(List<Integer> hours) {
         this.hours = hours;
+    }
+
+    public List<Boolean> getIsBooked() {
+        return isBooked;
+    }
+
+    public void setIsBooked(List<Boolean> isBooked) {
+        this.isBooked = isBooked;
     }
 
     public int getId() {
