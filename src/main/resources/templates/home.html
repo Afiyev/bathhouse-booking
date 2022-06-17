@@ -193,8 +193,9 @@
                         th:each="isbooked : ${(cabin.schedule).isBooked}"
                     >
                         <button type="button"
-                            th:attr="style=' margin-right: 5px; margin-bottom: 5px; margin-top: 2px; height: 30px;   width: 100px; border: none; color: white; font-size: 11px; background-color: ' + ${isbooked? 'red; pointer-events: none' : '#009fe3; cursor: pointer'}">
-                            A
+                            th:attr="style=' margin-right: 5px; margin-bottom: 5px; margin-top: 2px; height: 30px;   width: 100px; border: none; color: white; font-size: 11px; background-color: ' + ${isbooked? 'red; pointer-events: none' : '#009fe3; cursor: pointer'}"
+                        >
+                            <span th:text="${(cabin.schedule).isBooked.size() + isbookedStat.index} + ':00'"></span>
                         </button>
                     </div>
                 </div>
