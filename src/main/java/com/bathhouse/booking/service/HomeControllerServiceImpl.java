@@ -1,6 +1,6 @@
 package com.bathhouse.booking.service;
 
-import com.bathhouse.booking.enums.City;
+import com.bathhouse.booking.enums.Cities;
 import com.bathhouse.booking.model.Bathhouse;
 import com.bathhouse.booking.model.Recommendation;
 import com.bathhouse.booking.repository.BathhouseRepository;
@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class HomeControllerServiceImpl implements HomeControllerService{
@@ -31,7 +32,7 @@ public class HomeControllerServiceImpl implements HomeControllerService{
     @Override
     public List<Integer> getListOfCountsOfBathhouses() {
         List<Integer> countsOfBathhouses = new ArrayList<>();
-        for (City city : City.values()){
+        for (Cities city : Cities.values()){
             countsOfBathhouses.add(bathhouseRepository.countAllByCity(city.toString()));
         }
         return countsOfBathhouses;
@@ -41,9 +42,9 @@ public class HomeControllerServiceImpl implements HomeControllerService{
     public List<Bathhouse> getRecommendedBathhouses() {
         List<Recommendation> recommendations = recommendationRepository.findAll();
         List<Bathhouse> recommendedBathhouses = new ArrayList<>();
-        for(Recommendation recommendation : recommendations){
-            recommendedBathhouses.add(recommendation.getBathhouse());
-        }
+        recommendedBathhouses = recommendations.stream()
+                .map(recommendation -> recommendation.getBathhouse())
+                .collect(Collectors.toList());
         return recommendedBathhouses;
     }
 }

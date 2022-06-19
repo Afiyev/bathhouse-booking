@@ -1,6 +1,6 @@
 package com.bathhouse.booking.enums;
 
-public enum City {
+public enum Cities {
     ALMATY,
     SHIELI,
     NURSULTAN,

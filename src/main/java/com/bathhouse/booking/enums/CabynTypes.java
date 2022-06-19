@@ -1,6 +1,6 @@
 package com.bathhouse.booking.enums;
 
-public enum CabynCapacity {
+public enum CabynTypes {
     SMALL,
     MEDIUM,
     BIG;

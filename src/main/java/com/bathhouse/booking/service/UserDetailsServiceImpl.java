@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
@@ -28,10 +29,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         if (user == null) {
             throw new UsernameNotFoundException("Could not find user");
         }
-            Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
-        for(Role role : user.getRoles()){
-            grantedAuthorities.add(new SimpleGrantedAuthority(role.getName()));
-        }
+        Set<GrantedAuthority> grantedAuthorities = new HashSet<>();
+        grantedAuthorities = user.getRoles().stream()
+                .map(role -> new SimpleGrantedAuthority(role.getName()))
+                .collect(Collectors.toSet());
 
         return new org.springframework.security.core.userdetails.User
                 (user.getUsername(), user.getPassword(), grantedAuthorities);
