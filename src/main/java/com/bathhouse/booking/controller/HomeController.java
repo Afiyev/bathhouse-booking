@@ -26,7 +26,7 @@ public class HomeController {
     }
 
     @GetMapping("/")
-    public String welcome(Model model){
+    public String home(Model model){
         List<Integer> countOfBathhouses = homeControllerService.getListOfCountsOfBathhouses();
         List<Bathhouse> recommendedBathhouses = homeControllerService.getRecommendedBathhouses();
 
@@ -80,4 +80,22 @@ public class HomeController {
         model.addAttribute("recommendedBathhouses", recommendedBathhouses);
         return "home";
     }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
+
+    @GetMapping("/register")
+    public String register(){
+        return "register";
+    }
+
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "welcome";
+    }
+
+
+
 }
