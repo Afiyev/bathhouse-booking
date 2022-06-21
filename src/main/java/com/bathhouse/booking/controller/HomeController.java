@@ -2,9 +2,7 @@ package com.bathhouse.booking.controller;
 
 import com.bathhouse.booking.enums.CabynTypes;
 import com.bathhouse.booking.enums.Cities;
-import com.bathhouse.booking.model.Bathhouse;
-import com.bathhouse.booking.model.Cabin;
-import com.bathhouse.booking.model.Schedule;
+import com.bathhouse.booking.model.*;
 import com.bathhouse.booking.service.HomeControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -13,6 +11,8 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.HashSet;
 import java.util.List;
@@ -36,16 +36,12 @@ public class HomeController {
         Schedule schedule = new Schedule();
         List<Boolean> isBooked = List.of(false, true, true, false, false, false,
                 true, true, false, false,false, false);
-        List<Integer> hours = List.of(12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23);
         schedule.setIsBooked(isBooked);
-        schedule.setHours(hours);
 
         Schedule schedule1 = new Schedule();
         List<Boolean> isBooked1 = List.of(false, true, false, true, true, false,
                 false, true, false, false,true, true);
-        List<Integer> hours1 = List.of(12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23);
         schedule1.setIsBooked(isBooked1);
-        schedule1.setHours(hours);
 
         Cabin cabin = new Cabin();
         cabin.setCapacity(CabynTypes.MEDIUM.toString());
@@ -84,6 +80,12 @@ public class HomeController {
         return "home";
     }
 
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "welcome";
+    }
+
+
     @GetMapping("/login")
     public String login(){
 
@@ -96,8 +98,9 @@ public class HomeController {
     }
 
     @GetMapping("/register")
-    public String register(){
+    public String getRegister(Model model){
 
+        model.addAttribute("user", new User());
         // If user is authenticated : redirect to 'home' page. Else do register
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
@@ -106,10 +109,15 @@ public class HomeController {
         return "redirect:/";
     }
 
-    @GetMapping("/welcome")
-    public String welcome(){
-        return "welcome";
+    @PostMapping("/register")
+    public String postRegister(@ModelAttribute("user") User user){
+        if (homeControllerService.findUserByUsername(user.getUsername()) != null)
+            return "register";
+        homeControllerService.saveUser(user);
+        homeControllerService.autoLogin(user.getUsername(), user.getConfirmPassword());
+        return "redirect:/";
     }
+
 
 
 

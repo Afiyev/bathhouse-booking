@@ -5,6 +5,7 @@ import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.*;
+import java.util.Arrays;
 import java.util.List;
 
 @Entity
@@ -25,24 +26,13 @@ public class Schedule {
             columnDefinition = "BOOLEAN[]")
     private List<Boolean> isBooked;
 
-    @Type(type = "list-array")
-    @Column(name = "hours",
-            columnDefinition = "INT[]")
-    private List<Integer> hours;
-
-
     @OneToOne(mappedBy = "schedule", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Cabin cabin;
 
     public Schedule() {
-    }
-
-    public List<Integer> getHours() {
-        return hours;
-    }
-
-    public void setHours(List<Integer> hours) {
-        this.hours = hours;
+        Boolean[] array = new Boolean[12];
+        Arrays.fill(array, false);
+        isBooked = Arrays.asList(array);
     }
 
     public List<Boolean> getIsBooked() {

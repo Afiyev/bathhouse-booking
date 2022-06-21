@@ -21,8 +21,11 @@ public class User {
     @Column
     private String password;
 
+    @Transient
+    private String confirmPassword;
+
     @Column
-    private boolean enabled;
+    private int enabled;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
@@ -36,13 +39,22 @@ public class User {
     private Set<Reservation> reservations;
 
     public User() {
+        enabled = 1;
     }
 
-    public boolean isEnabled() {
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
+    }
+
+    public int getEnabled() {
         return enabled;
     }
 
-    public void setEnabled(boolean enabled) {
+    public void setEnabled(int enabled) {
         this.enabled = enabled;
     }
 
@@ -94,4 +106,17 @@ public class User {
         this.roles = roles;
     }
 
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", mobile_number='" + mobile_number + '\'' +
+                ", password='" + password + '\'' +
+                ", confirmPassword='" + confirmPassword + '\'' +
+                ", enabled=" + enabled +
+                ", roles=" + roles +
+                ", reservations=" + reservations +
+                '}';
+    }
 }

@@ -3,13 +3,17 @@ package com.bathhouse.booking.service;
 import com.bathhouse.booking.enums.Cities;
 import com.bathhouse.booking.model.Bathhouse;
 import com.bathhouse.booking.model.Recommendation;
+import com.bathhouse.booking.model.Role;
+import com.bathhouse.booking.model.User;
 import com.bathhouse.booking.repository.BathhouseRepository;
 import com.bathhouse.booking.repository.RecommendationRepository;
+import com.bathhouse.booking.repository.RoleRepository;
+import com.bathhouse.booking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -17,11 +21,21 @@ public class HomeControllerServiceImpl implements HomeControllerService{
 
     private final BathhouseRepository bathhouseRepository;
     private final RecommendationRepository recommendationRepository;
+    private final UserRepository userRepository;
+    private final RoleRepository roleRepository;
+    private final SecurityService securityService;
+    private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
-    public HomeControllerServiceImpl(BathhouseRepository bathhouseRepository, RecommendationRepository recommendationRepository) {
+    public HomeControllerServiceImpl(BathhouseRepository bathhouseRepository, RecommendationRepository recommendationRepository,
+                                     UserRepository userRepository, RoleRepository roleRepository,
+                                     SecurityService securityService, BCryptPasswordEncoder passwordEncoder) {
         this.bathhouseRepository = bathhouseRepository;
         this.recommendationRepository = recommendationRepository;
+        this.userRepository = userRepository;
+        this.roleRepository = roleRepository;
+        this.securityService =securityService;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -46,5 +60,26 @@ public class HomeControllerServiceImpl implements HomeControllerService{
                 .map(recommendation -> recommendation.getBathhouse())
                 .collect(Collectors.toList());
         return recommendedBathhouses;
+    }
+
+    @Override
+    public void saveUser(User user) {
+        Set<Role> roles = new HashSet<>();
+        roles.add(roleRepository.findById(2).get());
+        user.setRoles(roles);
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userRepository.save(user);
+    }
+
+    @Override
+    public User findUserByUsername(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
+    @Override
+    public void autoLogin(String username, String password) {
+        securityService.autoLogin(username, password);
     }
 }
