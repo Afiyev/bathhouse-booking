@@ -4,6 +4,8 @@ import com.bathhouse.booking.model.Bathhouse;
 import com.bathhouse.booking.model.Role;
 import com.bathhouse.booking.model.User;
 
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 public interface HomeControllerService {
@@ -11,6 +13,5 @@ public interface HomeControllerService {
     List<Bathhouse> getRecommendedBathhouses();
     List<Integer> getListOfCountsOfBathhouses();
     void saveUser(User user);
-    void autoLogin(String username, String password);
     User findUserByUsername(String username);
 }

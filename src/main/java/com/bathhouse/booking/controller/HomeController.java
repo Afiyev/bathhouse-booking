@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -110,15 +111,11 @@ public class HomeController {
     }
 
     @PostMapping("/register")
-    public String postRegister(@ModelAttribute("user") User user){
-        if (homeControllerService.findUserByUsername(user.getUsername()) != null)
+    public String postRegister(@ModelAttribute("user") User user, HttpServletRequest request){
+        if (homeControllerService.findUserByUsername(user.getUsername()) != null) {
             return "register";
+        }
         homeControllerService.saveUser(user);
-        homeControllerService.autoLogin(user.getUsername(), user.getConfirmPassword());
-        return "redirect:/";
+        return "redirect:/login";
     }
-
-
-
-
 }

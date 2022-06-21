@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -23,18 +24,16 @@ public class HomeControllerServiceImpl implements HomeControllerService{
     private final RecommendationRepository recommendationRepository;
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
-    private final SecurityService securityService;
     private final BCryptPasswordEncoder passwordEncoder;
 
     @Autowired
     public HomeControllerServiceImpl(BathhouseRepository bathhouseRepository, RecommendationRepository recommendationRepository,
                                      UserRepository userRepository, RoleRepository roleRepository,
-                                     SecurityService securityService, BCryptPasswordEncoder passwordEncoder) {
+                                     BCryptPasswordEncoder passwordEncoder) {
         this.bathhouseRepository = bathhouseRepository;
         this.recommendationRepository = recommendationRepository;
         this.userRepository = userRepository;
         this.roleRepository = roleRepository;
-        this.securityService =securityService;
         this.passwordEncoder = passwordEncoder;
     }
 
@@ -78,8 +77,4 @@ public class HomeControllerServiceImpl implements HomeControllerService{
         return userRepository.findUserByUsername(username);
     }
 
-    @Override
-    public void autoLogin(String username, String password) {
-        securityService.autoLogin(username, password);
-    }
 }
