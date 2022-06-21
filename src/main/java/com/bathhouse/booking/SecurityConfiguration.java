@@ -41,6 +41,7 @@ public class SecurityConfiguration {
                 .defaultSuccessUrl("/welcome")
                 .and()
                 .logout().permitAll()
+                .logoutSuccessUrl("/")
                 .and()
                 .exceptionHandling().accessDeniedPage("/403")
                 ;

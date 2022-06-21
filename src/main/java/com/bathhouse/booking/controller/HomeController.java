@@ -7,6 +7,9 @@ import com.bathhouse.booking.model.Cabin;
 import com.bathhouse.booking.model.Schedule;
 import com.bathhouse.booking.service.HomeControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -83,12 +86,24 @@ public class HomeController {
 
     @GetMapping("/login")
     public String login(){
-        return "login";
+
+        // If user is authenticated : redirect to 'home' page. Else do log in
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
+            return "login";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/register")
     public String register(){
-        return "register";
+
+        // If user is authenticated : redirect to 'home' page. Else do register
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
+            return "register";
+        }
+        return "redirect:/";
     }
 
     @GetMapping("/welcome")
