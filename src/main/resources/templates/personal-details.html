@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Personal details</title>
+    <style>
+        #header{
+            background-color: #1e3a8a;
+            padding-top: 13px;
+            padding-left: 22%;
+            font-family: Tahoma;
+            font-weight: bolder;
+            color: white;
+            font-size: 22px;
+            width: 78%;
+            z-index: 1;
+            top: 0;
+            height: 45px;
+        }
+        #header button{
+            height: 36px;
+            color: #003580;
+            margin-left: 42%;
+            font-family: Georgia;
+            font-size: 14px;
+        }
+        #user-page-navigation{
+            border: 1px solid lightgray;
+            border-radius: 4px;
+            padding: 20px;
+            width: 130px;
+            margin-top: 100px;
+            margin-left: 22%;
+            font-family: Tahoma;
+            font-size: 16px;
+            float: left;
+        }
+        #user-page-navigation a{
+            text-decoration: none;
+            color: #2B2730;
+        }
+        #user-page-navigation a:hover{
+            color: #009fe3;
+        }
+        #user-page-personal-update{
+            margin-top: 100px;
+            padding-top: 0;
+            width: 600px;
+            float: left;
+        }
+        #user-page-personal-update form{
+            margin-left: 10%;
+            margin-top: 60px;
+            font-family: Tahoma;
+            font-size: 16px;
+        }
+        #user-page-personal-update form button{
+            font-family: Tahoma;
+            font-size: 16px;
+        }
+        #user-page-personal-update form input{
+            font-family: Tahoma;
+            font-size: 16px;
+        }
+        .foo {
+            height: 12px;
+            width: 18px;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <a href="/" style="text-decoration: none; color: white"> BathhouseBooking.com </a>
+    <button type="button" onclick="window.location.href='/logout'">Sign out</button>
+</div>
+<br><br>
+<div id="user-page-navigation">
+    <a href="/user-page"> Back </a><br><br><hr><br>
+    <a href="/user-page/personal-details"> Personal details </a><br><br><hr><br>
+    <a href="/user-page/my-bookings"> My bookings </a><br><br><hr><br>
+    <a href="/user-page/my-bathhouses"> My bathhouses </a><br><br><hr><br>
+    <a href="/user-page/security"> Security </a>
+</div>
+<div id="user-page-personal-update">
+    <p style="margin-left: 10%;
+font-size: 32px;
+font-family: Tahoma;
+margin-top: 0;
+margin-bottom: 0;
+font-weight: bolder">Personal details</p>
+    <p style="margin-left: 10%;
+font-size: 16px;
+margin-top: 5px;
+font-family: Tahoma;
+color: darkslategray">There you can update info</p>
+    <form th:action="@{/user-page/personal-details}" method="post">
+        <table>
+            <tr>
+                <td><label for="username">Username</label></td>
+                <td class="foo"></td>
+                <td><input id="username" type="text" th:field="${user.username}"></td>
+            </tr>
+            <tr><td class="foo"></td></tr>
+            <tr>
+                <td><label for="mobile">Mobile number</label></td>
+                <td class="foo"></td>
+                <td><input id="mobile" type="text" th:field="${user.mobile_number}"></td>
+            </tr>
+            <tr><td class="foo"></td></tr>
+            <tr>
+                <td><button type="submit">Update</button></td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+</html>

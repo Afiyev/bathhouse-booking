@@ -1,29 +1,29 @@
-#header{
+.header{
     background-color: #1e3a8a;
     padding-top: 13px;
-    padding-left: 12%;
+    padding-left: 22%;
     font-family: Tahoma;
     font-weight: bolder;
     color: white;
     font-size: 22px;
-    width: 88%;
+    width: 78%;
     z-index: 1;
     top: 0;
     height: 45px;
 }
 
-#header button{
+.header button{
     height: 36px;
     color: #003580;
-    margin-left: 60%;
+    margin-left: 42%;
     font-family: Georgia;
     font-size: 14px;
 }
 
 #table{
     margin-top: 30px;
-    margin-left: 11%;
-    margin-right: 12%;
+    margin-left: 21%;
+    margin-right: 18%;
     padding: 0;
 }
 
@@ -32,9 +32,10 @@
     border-radius: 4px;
     padding-left: 15px;
     padding-bottom: 15px;
-    width: 470px;
+    width: 400px;
 }
 
 .setting-container:hover{
     color: #009fe3;
+    cursor: pointer;
 }

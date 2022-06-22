@@ -32,7 +32,7 @@ public class SecurityController {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
             return "login";
         }
-        return "redirect:/home";
+        return "redirect:/user-page";
     }
 
     @GetMapping("/register")
@@ -44,7 +44,7 @@ public class SecurityController {
         if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
             return "register";
         }
-        return "redirect:/home";
+        return "redirect:/user-page";
     }
 
     @PostMapping("/register")
