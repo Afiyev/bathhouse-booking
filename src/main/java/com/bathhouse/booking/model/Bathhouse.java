@@ -36,7 +36,30 @@ public class Bathhouse {
     @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Cabin> cabins;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Reservation> reservations;
+
     public Bathhouse() {
+    }
+
+    public Set<Reservation> getReservations() {
+        return reservations;
+    }
+
+    public void setReservations(Set<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public String getImage() {

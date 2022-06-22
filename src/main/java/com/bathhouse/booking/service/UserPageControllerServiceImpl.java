@@ -24,4 +24,11 @@ public class UserPageControllerServiceImpl implements UserPageControllerService{
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
+
+    @Override
+    public void update(User user, String username, String mobile) {
+        user.setUsername(username);
+        user.setMobile_number(mobile);
+        userRepository.save(user);
+    }
 }

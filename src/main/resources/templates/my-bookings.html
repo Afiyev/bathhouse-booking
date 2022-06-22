@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My bookings</title>
+  <style>
+    #header{
+      background-color: #1e3a8a;
+      padding-top: 13px;
+      padding-left: 22%;
+      font-family: Tahoma;
+      font-weight: bolder;
+      color: white;
+      font-size: 22px;
+      width: 78%;
+      z-index: 1;
+      top: 0;
+      height: 45px;
+    }
+    #header button{
+      height: 36px;
+      color: #003580;
+      margin-left: 42%;
+      font-family: Georgia;
+      font-size: 14px;
+    }
+    #user-page-navigation{
+      border: 1px solid lightgray;
+      border-radius: 4px;
+      padding: 20px;
+      width: 130px;
+      margin-top: 100px;
+      margin-left: 22%;
+      font-family: Tahoma;
+      font-size: 16px;
+      float: left;
+    }
+    #user-page-navigation a{
+      text-decoration: none;
+      color: #2B2730;
+    }
+    #user-page-navigation a:hover{
+      color: #009fe3;
+    }
+    #user-page-bookings{
+      margin-top: 100px;
+      padding-top: 0;
+      width: 600px;
+      float: left;
+    }
+    .user-page-reservations{
+      margin-top: 30px;
+      margin-left: 10%;
+      font-family: Tahoma;
+      font-size: 16px;
+      width: 500px;
+      padding-left: 15px;
+      padding-bottom: 15px;
+      border: 1px solid lightgray;
+      border-radius: 4px;
+    }
+    .user-page-reservations button{
+      font-family: Tahoma;
+      font-size: 16px;
+    }
+  </style>
+</head>
+<body>
+<div id="header">
+  <a href="/" style="text-decoration: none; color: white"> BathhouseBooking.com </a>
+  <button type="button" onclick="window.location.href='/logout'">Sign out</button>
+</div>
+<br><br>
+<div id="user-page-navigation">
+  <a href="/user-page"> Back </a><br><br><hr><br>
+  <a href="/user-page/personal-details"> Personal details </a><br><br><hr><br>
+  <a href="/user-page/my-bookings"> My bookings </a><br><br><hr><br>
+  <a href="/user-page/my-bathhouses"> My bathhouses </a><br><br><hr><br>
+  <a href="/user-page/security"> Security </a>
+</div>
+<div id="user-page-bookings">
+  <p style="margin-left: 10%;
+font-size: 32px;
+font-family: Tahoma;
+margin-top: 0;
+margin-bottom: 0;
+font-weight: bolder">My bookings</p>
+  <p style="margin-left: 10%;
+font-size: 16px;
+margin-top: 5px;
+font-family: Tahoma;
+color: darkslategray">There are your actual bookings and history</p>
+  <div class="user-page-reservations" th:if="${reservations.size()==0}">
+    <p>You have no bookings</p>
+    <button type="button" onclick="window.location.href='/'">Book now</button>
+  </div>
+
+  <div th:unless="${reservations.size()==0}" >
+    <div th:each="reservation: ${reservations}">
+    <div class="user-page-reservations">
+      <table>
+        <tr>
+          <td>Booking id</td>
+          <td><span th:text="${reservation.id}"/></td>
+        </tr>
+        <tr>
+          <td>Bathhouse</td>
+          <td><span th:text="${((reservation.cabin).bathhouse).name}"/></td>
+        </tr>
+        <tr>
+          <td>Location</td>
+          <td><span th:text="${((reservation.cabin).bathhouse).city + ', ' + ((reservation.cabin).bathhouse).address}"/></td>
+        </tr>
+        <tr>
+          <td>Bathhouse phone number</td>
+          <td><span th:text="${((reservation.cabin).bathhouse).phone_number}"/></td>
+        </tr>
+        <tr>
+          <td>Cabin id</td>
+          <td><span th:text="${(reservation.cabin).id}"/></td>
+        </tr>
+        <tr>
+          <td>Cabin type</td>
+          <td><span th:text="${(reservation.cabin).capacity}"/></td>
+        </tr>
+        <tr>
+          <td>Price</td>
+          <td><span th:text="${(reservation.cabin).price}"/></td>
+        </tr>
+        <tr>
+          <td>Time</td>
+          <td><span th:text="${reservation.time}"/></td>
+        </tr>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

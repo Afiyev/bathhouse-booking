@@ -38,8 +38,19 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private Set<Reservation> reservations;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    private Set<Bathhouse> bathhouses;
+
     public User() {
         enabled = 1;
+    }
+
+    public Set<Bathhouse> getBathhouses() {
+        return bathhouses;
+    }
+
+    public void setBathhouses(Set<Bathhouse> bathhouses) {
+        this.bathhouses = bathhouses;
     }
 
     public String getConfirmPassword() {

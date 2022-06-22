@@ -26,7 +26,19 @@ public class Reservation {
     @JoinColumn(name = "cabin_id")
     private Cabin cabin;
 
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinColumn(name = "bathhouse_id")
+    private Bathhouse bathhouse;
+
     public Reservation() {
+    }
+
+    public Bathhouse getBathhouse() {
+        return bathhouse;
+    }
+
+    public void setBathhouse(Bathhouse bathhouse) {
+        this.bathhouse = bathhouse;
     }
 
     public int getId() {
