@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My bathhouses</title>
+
+    <script>
+        function myFunction(id) {
+            document.getElementById(id).classList.toggle("show");
+        }
+
+    </script>
+    <style>
+        #header{
+            background-color: #1e3a8a;
+            padding-top: 13px;
+            padding-left: 22%;
+            font-family: Tahoma;
+            font-weight: bolder;
+            color: white;
+            font-size: 22px;
+            width: 78%;
+            z-index: 1;
+            top: 0;
+            height: 45px;
+        }
+        #header button{
+            height: 36px;
+            color: #003580;
+            margin-left: 42%;
+            font-family: Georgia;
+            font-size: 14px;
+        }
+        #user-page-navigation{
+            border: 1px solid lightgray;
+            border-radius: 4px;
+            padding: 20px;
+            width: 130px;
+            margin-top: 100px;
+            margin-left: 22%;
+            font-family: Tahoma;
+            font-size: 16px;
+            float: left;
+        }
+        #user-page-navigation a{
+            text-decoration: none;
+            color: #2B2730;
+        }
+        #user-page-navigation a:hover{
+            color: #009fe3;
+        }
+        #user-page-bathhouses{
+            margin-top: 100px;
+            padding-top: 0;
+            width: 600px;
+            float: left;
+        }
+        .user-page-baths{
+            margin-top: 30px;
+            margin-left: 10%;
+            font-family: Tahoma;
+            font-size: 16px;
+            width: 500px;
+            padding-left: 15px;
+            padding-bottom: 15px;
+            border: 1px solid lightgray;
+            border-radius: 4px;
+        }
+        #button{
+            font-family: Tahoma;
+            font-size: 16px;
+            margin-top: 20px;
+            margin-left: 10%;
+        }
+        .foo {
+            height: 12px;
+            width: 18px;
+        }
+        .add-bath-dropdown{
+            display: none;
+            margin-left: 10%;
+        }
+        .add-bath-dropdown.show{
+            display: block;
+        }
+    </style>
+</head>
+<body>
+<div id="header">
+    <a href="/" style="text-decoration: none; color: white"> BathhouseBooking.com </a>
+    <button type="button" onclick="window.location.href='/logout'">Sign out</button>
+</div>
+<br><br>
+<div id="user-page-navigation">
+    <a href="/user-page"> Back </a><br><br><hr><br>
+    <a href="/user-page/personal-details"> Personal details </a><br><br><hr><br>
+    <a href="/user-page/my-bookings"> My bookings </a><br><br><hr><br>
+    <a href="/user-page/my-bathhouses"> My bathhouses </a><br><br><hr><br>
+    <a href="/user-page/security"> Security </a>
+</div>
+<div id="user-page-bathhouses">
+    <p style="margin-left: 10%;
+font-size: 32px;
+font-family: Tahoma;
+margin-top: 0;
+margin-bottom: 0;
+font-weight: bolder">My bathhouses</p>
+    <p style="margin-left: 10%;
+font-size: 16px;
+margin-top: 5px;
+font-family: Tahoma;
+color: darkslategray">Add your property or edit bathhouse details</p>
+    <div class="user-page-baths" th:if="${bathhouses.size()==0}">
+        <p>You have no bathhouses</p>
+    </div>
+
+    <div th:unless="${bathhouses.size()==0}" >
+        <div th:each="bath: ${bathhouses}">
+            <div class="user-page-baths">
+                <form th:action="@{/user-page/update-bathhouse}" method="post" th:object="${bath}">
+                <table>
+                    <tr>
+                        <td><label for="name">Name</label></td>
+                        <td class="foo"></td>
+                        <td><input id="name" type="text" th:field="*{bath.name}" th:value="*{bath.name}"></td>
+                    </tr>
+                    <tr><td class="foo"></td></tr>
+                    <tr>
+                        <td><label for="city">City</label></td>
+                        <td class="foo"></td>
+                        <td>
+                            <input id="city" list="cities" type="text" th:field="*{bath.city}" th:value="*{bath.city}"
+                                   pattern="Shieli|Qyzylorda|Almaty|Nur-Sultan|Shymkent|Taraz"
+                                   title='Please select from list'
+                            />
+                            <datalist id="cities">
+                                <option value="Shieli">
+                                <option value="Qyzylorda">
+                                <option value="Almaty">
+                                <option value="Nur-Sultan">
+                                <option value="Shymkent">
+                                <option value="Taraz">
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr><td class="foo"></td></tr>
+                    <tr>
+                        <td><label for="address">Address</label></td>
+                        <td class="foo"></td>
+                        <td><input id="address" type="text" th:field="*{bath.address}" th:value="*{bath.address}"></td>
+                    </tr>
+                    <tr><td class="foo"></td></tr>
+                    <tr>
+                        <td><label for="phone">Phone number</label></td>
+                        <td class="foo"></td>
+                        <td><input id="phone" type="text" th:field="*{bath.phone_number}" th:value="*{bath.phone_number}"></td>
+                    </tr>
+                    <tr><td class="foo"></td></tr>
+                    <tr>
+                        <td><label for="description">Description</label></td>
+                        <td class="foo"></td>
+                        <td><input id="description" type="text" th:field="*{bath.description}" th:value="*{bath.description}"></td>
+                    </tr>
+                    <tr><td class="foo"></td></tr>
+                    <tr>
+                        <td><label for="image">Image path</label></td>
+                        <td class="foo"></td>
+                        <td><input id="image" type="text" th:field="*{bath.image}" th:value="*{bath.image}"></td>
+                    </tr>
+                    <tr><td class="foo"></td></tr>
+                    <tr>
+                        <td><button type="submit">Update</button></td>
+                    </tr>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>
+    <button id="button" type="button" onclick="myFunction('add-bath-dropdown')">Add new bathhouse</button>
+
+    <div id="add-bath-dropdown" class="add-bath-dropdown">
+
+    </div>
+</div>
+</body>
+</html>

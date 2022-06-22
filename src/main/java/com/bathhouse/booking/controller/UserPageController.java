@@ -2,10 +2,7 @@ package com.bathhouse.booking.controller;
 
 import com.bathhouse.booking.enums.CabynTypes;
 import com.bathhouse.booking.enums.Cities;
-import com.bathhouse.booking.model.Bathhouse;
-import com.bathhouse.booking.model.Cabin;
-import com.bathhouse.booking.model.Reservation;
-import com.bathhouse.booking.model.User;
+import com.bathhouse.booking.model.*;
 import com.bathhouse.booking.service.UserPageControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,7 +13,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
 import java.time.LocalTime;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Controller
@@ -96,4 +95,43 @@ public class UserPageController {
         return "my-bookings";
     }
 
+    @GetMapping("/user-page/my-bathhouses")
+    public String myBathhouses(Principal principal, Model model){
+        User user = userPageControllerService.findUserByUsername(principal.getName());
+
+        List<Bathhouse> bathhouses = new ArrayList<>();
+
+        Cabin cabin = new Cabin();
+        cabin.setCapacity(CabynTypes.MEDIUM.toString());
+        cabin.setPrice(3000);
+        cabin.setId(45);
+
+        Cabin cabin1 = new Cabin();
+        cabin1.setCapacity(CabynTypes.SMALL.toString());
+        cabin1.setPrice(2500);
+        cabin1.setId(123);
+
+        Set<Cabin> cabins = new HashSet<>();
+        cabins.add(cabin);
+        cabins.add(cabin1);
+
+        Bathhouse bathhouse = new Bathhouse();
+        bathhouse.setImage("/images/bath1.jpg");
+        bathhouse.setAddress("698 Candlewood Lane, Cabot Cove, Maine.");
+        bathhouse.setCity(Cities.ALMATY.toString());
+        bathhouse.setDescription("The history of bath in Japan begins in the 6th Century with the introduction of Buddist purification rituals. The custom was believed to cleanse the body and spirit to promote improved health using heat and steam. This why many temples in Japan have baths.");
+        bathhouse.setName("Japanese Bathhouse");
+        bathhouse.setPhone_number("+7(707) 458 56 32");
+        bathhouse.setCabins(cabins);
+        bathhouses.add(bathhouse);
+        bathhouses.add(bathhouse);
+
+        model.addAttribute("bathhouses", bathhouses);
+        return "/my-bathhouses";
+    }
+
+    @PostMapping("/user-page/update-bathhouse")
+    public String updateBathhouse(@ModelAttribute("bath") Bathhouse bathhouse){
+        return "";
+    }
 }
