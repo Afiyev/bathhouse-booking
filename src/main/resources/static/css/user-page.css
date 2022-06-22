@@ -19,3 +19,22 @@
     font-family: Georgia;
     font-size: 14px;
 }
+
+#table{
+    margin-top: 30px;
+    margin-left: 11%;
+    margin-right: 12%;
+    padding: 0;
+}
+
+.setting-container{
+    border: 1px solid lightgray;
+    border-radius: 4px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+    width: 470px;
+}
+
+.setting-container:hover{
+    color: #009fe3;
+}
