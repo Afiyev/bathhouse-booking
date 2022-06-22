@@ -1,0 +1,21 @@
+#header{
+    background-color: #1e3a8a;
+    padding-top: 13px;
+    padding-left: 12%;
+    font-family: Tahoma;
+    font-weight: bolder;
+    color: white;
+    font-size: 22px;
+    width: 88%;
+    z-index: 1;
+    top: 0;
+    height: 45px;
+}
+
+#header button{
+    height: 36px;
+    color: #003580;
+    margin-left: 60%;
+    font-family: Georgia;
+    font-size: 14px;
+}

@@ -12,6 +12,4 @@ public interface HomeControllerService {
     List<Bathhouse> findAllBathhousesByCity(String city);
     List<Bathhouse> getRecommendedBathhouses();
     List<Integer> getListOfCountsOfBathhouses();
-    void saveUser(User user);
-    User findUserByUsername(String username);
 }

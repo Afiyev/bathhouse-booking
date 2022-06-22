@@ -5,16 +5,10 @@ import com.bathhouse.booking.enums.Cities;
 import com.bathhouse.booking.model.*;
 import com.bathhouse.booking.service.HomeControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.authentication.AnonymousAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -81,41 +75,4 @@ public class HomeController {
         return "home";
     }
 
-    @GetMapping("/welcome")
-    public String welcome(){
-        return "welcome";
-    }
-
-
-    @GetMapping("/login")
-    public String login(){
-
-        // If user is authenticated : redirect to 'home' page. Else do log in
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
-            return "login";
-        }
-        return "redirect:/";
-    }
-
-    @GetMapping("/register")
-    public String getRegister(Model model){
-
-        model.addAttribute("user", new User());
-        // If user is authenticated : redirect to 'home' page. Else do register
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        if (authentication == null || authentication instanceof AnonymousAuthenticationToken){
-            return "register";
-        }
-        return "redirect:/";
-    }
-
-    @PostMapping("/register")
-    public String postRegister(@ModelAttribute("user") User user, HttpServletRequest request){
-        if (homeControllerService.findUserByUsername(user.getUsername()) != null) {
-            return "register";
-        }
-        homeControllerService.saveUser(user);
-        return "redirect:/login";
-    }
 }
