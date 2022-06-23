@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.security.Principal;
@@ -115,23 +116,28 @@ public class UserPageController {
         cabins.add(cabin);
         cabins.add(cabin1);
 
-        Bathhouse bathhouse = new Bathhouse();
-        bathhouse.setImage("/images/bath1.jpg");
-        bathhouse.setAddress("698 Candlewood Lane, Cabot Cove, Maine.");
-        bathhouse.setCity(Cities.ALMATY.toString());
-        bathhouse.setDescription("The history of bath in Japan begins in the 6th Century with the introduction of Buddist purification rituals. The custom was believed to cleanse the body and spirit to promote improved health using heat and steam. This why many temples in Japan have baths.");
-        bathhouse.setName("Japanese Bathhouse");
-        bathhouse.setPhone_number("+7(707) 458 56 32");
-        bathhouse.setCabins(cabins);
-        bathhouses.add(bathhouse);
-        bathhouses.add(bathhouse);
-
+        Bathhouse bathhouse3 = new Bathhouse();
+        bathhouse3.setImage("/images/bath1.jpg");
+        bathhouse3.setAddress("698 Candlewood Lane, Cabot Cove, Maine.");
+        bathhouse3.setCity(Cities.ALMATY.toString());
+        bathhouse3.setDescription("The history of bath in Japan begins in the 6th Century with the introduction of Buddist purification rituals. The custom was believed to cleanse the body and spirit to promote improved health using heat and steam. This why many temples in Japan have baths.");
+        bathhouse3.setName("Japanese Bathhouse");
+        bathhouse3.setPhone_number("+7(707) 458 56 32");
+        bathhouse3.setCabins(cabins);
+        bathhouses.add(bathhouse3);
+        bathhouses.add(bathhouse3);
         model.addAttribute("bathhouses", bathhouses);
+        model.addAttribute("bathhouse", "bathhouse");
+        for(int i = 0; i < bathhouses.size(); i++){
+            String m = "bathhouse" + i;
+            model.addAttribute(m, bathhouses.get(i));
+        }
         return "/my-bathhouses";
     }
 
     @PostMapping("/user-page/update-bathhouse")
-    public String updateBathhouse(@ModelAttribute("bath") Bathhouse bathhouse){
-        return "";
+    public String updateBathhouse(@ModelAttribute("bathhouse0") Bathhouse bathhouse){
+        System.out.println(bathhouse.getName());
+        return "redirect:/user-page";
     }
 }
