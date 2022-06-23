@@ -46,7 +46,7 @@ public class UserPageController {
     @PostMapping("/user-page/personal-details")
     public String postPersonalDetails(@ModelAttribute User updatedUser, Principal principal){
         User user = userPageControllerService.findUserByUsername(principal.getName());
-        userPageControllerService.update(user, updatedUser.getUsername(), updatedUser.getMobile_number());
+        userPageControllerService.updateUser(user, updatedUser.getUsername(), updatedUser.getMobile_number());
         return "redirect:/logout";
     }
 
@@ -136,8 +136,8 @@ public class UserPageController {
     }
 
     @PostMapping("/user-page/update-bathhouse")
-    public String updateBathhouse(@ModelAttribute("bathhouse0") Bathhouse bathhouse){
-        System.out.println(bathhouse.getName());
+    public String updateBathhouse(@ModelAttribute Bathhouse bathhouse){
+        userPageControllerService.updateBath(bathhouse);
         return "redirect:/user-page";
     }
 }
