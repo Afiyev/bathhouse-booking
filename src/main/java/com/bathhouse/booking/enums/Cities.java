@@ -12,6 +12,9 @@ public enum Cities {
     @Override
     public String toString() {
         String s = super.toString();
+        if(s=="NURSULTAN"){
+            return "Nur-Sultan";
+        }
         s = s.substring(0, 1) + s.substring(1).toLowerCase();
         return s;
     }

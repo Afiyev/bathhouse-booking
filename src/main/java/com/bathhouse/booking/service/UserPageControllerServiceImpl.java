@@ -60,7 +60,7 @@ public class UserPageControllerServiceImpl implements UserPageControllerService 
         if (fileName != null) {
             bathhouse.setImage("/images/" + fileName);
         }
-//        bathhouseRepository.save(bathhouse);
+        bathhouseRepository.save(bathhouse);
     }
 
     @Override
@@ -98,32 +98,7 @@ public class UserPageControllerServiceImpl implements UserPageControllerService 
 
     @Override
     public void addModelAttributes(User user, Model model, int cabin_number) {
-        List<Bathhouse> bathhouses = new ArrayList<>();
-
-        Cabin cabin = new Cabin();
-        cabin.setCapacity(CabynTypes.MEDIUM.toString());
-        cabin.setPrice(3000);
-        cabin.setId(45);
-
-        Cabin cabin1 = new Cabin();
-        cabin1.setCapacity(CabynTypes.SMALL.toString());
-        cabin1.setPrice(2500);
-        cabin1.setId(123);
-
-        List<Cabin> cabins = new ArrayList<>();
-        cabins.add(cabin);
-        cabins.add(cabin1);
-
-        Bathhouse bathhouse3 = new Bathhouse();
-        bathhouse3.setImage("/images/bath1.jpg");
-        bathhouse3.setAddress("698 Candlewood Lane, Cabot Cove, Maine.");
-        bathhouse3.setCity(Cities.ALMATY.toString());
-        bathhouse3.setDescription("The history of bath in Japan begins in the 6th Century with the introduction of Buddist purification rituals. The custom was believed to cleanse the body and spirit to promote improved health using heat and steam. This why many temples in Japan have baths.");
-        bathhouse3.setName("Japanese Bathhouse");
-        bathhouse3.setPhone_number("+7(707) 458 56 32");
-        bathhouse3.setCabins(cabins);
-        bathhouses.add(bathhouse3);
-        bathhouses.add(bathhouse3);
+        List<Bathhouse> bathhouses = bathhouseRepository.findAllByUser(user);
         CabinCreationDto cabinsForm = new CabinCreationDto();
 
         model.addAttribute("bathhouses", bathhouses);
