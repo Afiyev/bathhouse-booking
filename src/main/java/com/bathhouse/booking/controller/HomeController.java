@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -50,7 +51,7 @@ public class HomeController {
         cabin1.setSchedule(schedule1);
         cabin1.setId(21);
 
-        Set<Cabin> cabins = new HashSet<>();
+        List<Cabin> cabins = new ArrayList<>();
         cabins.add(cabin);
         cabins.add(cabin1);
 

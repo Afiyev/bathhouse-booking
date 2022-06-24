@@ -255,7 +255,7 @@ color: darkslategray">First, you have to specify the number of cabins in your ba
 
         <div th:attr="style='display : ' + ${(num == '0') ? 'none;' : 'block;'}" id="add-bath-dropdown"
              class="add-bath-dropdown">
-            <form th:object="${cabins}" th:action="@{/user-page/add-bathhouse}" method="post">
+            <form th:object="${cabins}" th:action="@{/user-page/add-bathhouse}" method="post" enctype="multipart/form-data">
                 <table>
                     <tr>
                         <td><label for="newname">Name</label></td>
@@ -306,6 +306,14 @@ color: darkslategray">First, you have to specify the number of cabins in your ba
                         <td><label for="newdescription">Description</label></td>
                         <td class="foo"></td>
                         <td><textarea id="newdescription" rows="5" cols="45" th:field="*{bathhouse.description}"/></td>
+                    </tr>
+                    <tr>
+                        <td class="foo"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="rating"> Rating </label></td>
+                        <td class="foo"></td>
+                        <td><input id="rating" type="text" th:field="*{bathhouse.rating}"></td>
                     </tr>
                     <tr>
                         <td class="foo"></td>

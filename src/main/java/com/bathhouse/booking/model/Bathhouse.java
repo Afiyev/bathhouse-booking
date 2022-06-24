@@ -1,6 +1,7 @@
 package com.bathhouse.booking.model;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -34,7 +35,7 @@ public class Bathhouse {
     private String image;
 
     @OneToMany(mappedBy = "bathhouse", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Set<Cabin> cabins;
+    private List<Cabin> cabins;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id")
@@ -126,11 +127,11 @@ public class Bathhouse {
         this.rating = rating;
     }
 
-    public Set<Cabin> getCabins() {
+    public List<Cabin> getCabins() {
         return cabins;
     }
 
-    public void setCabins(Set<Cabin> cabins) {
+    public void setCabins(List<Cabin> cabins) {
         this.cabins = cabins;
     }
 }

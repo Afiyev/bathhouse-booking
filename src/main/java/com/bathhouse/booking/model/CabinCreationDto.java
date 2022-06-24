@@ -1,15 +1,15 @@
 package com.bathhouse.booking.model;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 public class CabinCreationDto {
-    private Set<Cabin> cabins;
+    private List<Cabin> cabins;
     private Bathhouse bathhouse;
     private int cabin_number;
 
     public CabinCreationDto() {
-        this.cabins = new HashSet<>();
+        this.cabins = new ArrayList<>();
         this.cabin_number = 0;
         this.bathhouse = new Bathhouse();
     }
@@ -38,11 +38,11 @@ public class CabinCreationDto {
         this.cabin_number = cabin_number;
     }
 
-    public Set<Cabin> getCabins() {
+    public List<Cabin> getCabins() {
         return cabins;
     }
 
-    public void setCabins(Set<Cabin> cabins) {
+    public void setCabins(List<Cabin> cabins) {
         this.cabins = cabins;
     }
 }
