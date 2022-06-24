@@ -7,10 +7,7 @@ import com.bathhouse.booking.service.UserPageControllerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.time.LocalTime;
@@ -97,7 +94,7 @@ public class UserPageController {
     }
 
     @GetMapping("/user-page/my-bathhouses")
-    public String myBathhouses(Principal principal, Model model){
+    public String myBathhouses(@RequestParam int cabin_number, Principal principal, Model model){
         User user = userPageControllerService.findUserByUsername(principal.getName());
 
         List<Bathhouse> bathhouses = new ArrayList<>();
@@ -132,12 +129,20 @@ public class UserPageController {
             String m = "bathhouse" + i;
             model.addAttribute(m, bathhouses.get(i));
         }
+        model.addAttribute("newBathhouse", new Bathhouse());
+
+        CabinCreationDto cabinsForm = new CabinCreationDto();
+        for(int i = 0; i < cabin_number; i++){
+            cabinsForm.addCabin(new Cabin());
+        }
+        model.addAttribute("cabins", cabinsForm);
+
         return "/my-bathhouses";
     }
 
     @PostMapping("/user-page/update-bathhouse")
     public String updateBathhouse(@ModelAttribute Bathhouse bathhouse){
         userPageControllerService.updateBath(bathhouse);
-        return "redirect:/user-page";
+        return "redirect:/user-page/my-bathhouses?cabin_number=0";
     }
 }

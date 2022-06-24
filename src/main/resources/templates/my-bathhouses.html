@@ -4,13 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <title>My bathhouses</title>
-
-    <script>
-        function myFunction(id) {
-            document.getElementById(id).classList.toggle("show");
-        }
-
-    </script>
     <style>
         #header {
             background-color: #1e3a8a;
@@ -70,6 +63,8 @@
             width: 500px;
             padding-left: 15px;
             padding-bottom: 15px;
+
+            padding-top: 15px;
             border: 1px solid lightgray;
             border-radius: 4px;
         }
@@ -87,13 +82,15 @@
         }
 
         .add-bath-dropdown {
-            display: none;
             margin-left: 10%;
+            border: 1px solid lightgray;
+            border-radius: 4px;
+            padding-left: 15px;
+            padding-bottom: 15px;
+            padding-top: 15px;
+            width: 500px;
         }
 
-        .add-bath-dropdown.show {
-            display: block;
-        }
     </style>
 </head>
 <body>
@@ -112,7 +109,7 @@
     <a href="/user-page/my-bookings"> My bookings </a><br><br>
     <hr>
     <br>
-    <a href="/user-page/my-bathhouses"> My bathhouses </a><br><br>
+    <a href="/user-page/my-bathhouses?cabin_number=0"> My bathhouses </a><br><br>
     <hr>
     <br>
     <a href="/user-page/security"> Security </a>
@@ -139,7 +136,8 @@ color: darkslategray">Add your property or edit bathhouse details</p>
 
             <div class="user-page-baths">
 
-                <form th:object="${__${bathhouse+bathStat.index}__}" th:action="@{/user-page/update-bathhouse}" method="post">
+                <form th:object="${__${bathhouse+bathStat.index}__}" th:action="@{/user-page/update-bathhouse}"
+                      method="post">
                     <table>
                         <tr>
                             <td><label for="name">Name</label></td>
@@ -217,10 +215,101 @@ color: darkslategray">Add your property or edit bathhouse details</p>
         </div>
 
     </div>
-    <button id="button" type="button" onclick="myFunction('add-bath-dropdown')">Add new bathhouse</button>
+    <br><br>
+    <hr>
 
-    <div id="add-bath-dropdown" class="add-bath-dropdown">
+    <p style="margin-left: 10%;
+font-size: 32px;
+font-family: Tahoma;
+margin-top: 0;
+margin-bottom: 0;
+font-weight: bolder">Add new property</p>
+    <p style="margin-left: 10%;
+font-size: 16px;
+margin-top: 5px;
+font-family: Tahoma;
+color: darkslategray">First, you have to specify the number of cabins in your bath</p>
 
+    <form method="get" th:action="@{/user-page/my-bathhouses}" th:object="${cabins}">
+        <label for="cabin-number">Cabin number</label>
+        <input id="cabin-number" type="number" th:field="*{cabin_number}"/>
+        <button type="submit">Submit</button>
+    </form>
+    <!--    <button th:attr="style='margin-bottom: 30px; margin-top: 40px;' + ${cabins.isSetEmpty() ? 'pointer-events: none;' : ''}" id="button" type="button" onclick="myFunction('add-bath-dropdown')">Add new bathhouse</button>-->
+    <div th:with="num=${#request.getParameter('cabin_number')}">
+        <div th:attr="style='display : ' + ${(num == '0') ? 'none;' : 'block;'}" id="add-bath-dropdown"
+             class="add-bath-dropdown">
+            <form th:object="${newBathhouse}" th:action="@{/user-page/add-bathhouse}" method="post">
+                <table>
+                    <tr>
+                        <td><label for="newname">Name</label></td>
+                        <td class="foo"></td>
+                        <td><input id="newname" type="text" th:field="*{name}"></td>
+                    </tr>
+                    <tr>
+                        <td class="foo"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="newcity">City</label></td>
+                        <td class="foo"></td>
+                        <td>
+                            <input id="newcity" list="cities2" type="text" th:field="*{city}"
+                                   pattern="Shieli|Qyzylorda|Almaty|Nur-Sultan|Shymkent|Taraz"
+                                   title='Please select from list'
+                            />
+                            <datalist id="cities2">
+                                <option value="Shieli">
+                                <option value="Qyzylorda">
+                                <option value="Almaty">
+                                <option value="Nur-Sultan">
+                                <option value="Shymkent">
+                                <option value="Taraz">
+                            </datalist>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="foo"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="newaddress">Address</label></td>
+                        <td class="foo"></td>
+                        <td><input id="newaddress" type="text" th:field="*{address}"></td>
+                    </tr>
+                    <tr>
+                        <td class="foo"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="newphone">Phone number</label></td>
+                        <td class="foo"></td>
+                        <td><input id="newphone" type="text" th:field="*{phone_number}"></td>
+                    </tr>
+                    <tr>
+                        <td class="foo"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="newdescription">Description</label></td>
+                        <td class="foo"></td>
+                        <td><input id="newdescription" type="text" th:field="*{description}"></td>
+                    </tr>
+                    <tr>
+                        <td class="foo"></td>
+                    </tr>
+                    <tr>
+                        <td><label for="newimage">Image path</label></td>
+                        <td class="foo"></td>
+                        <td><input id="newimage" type="text" th:field="*{image}"></td>
+                    </tr>
+                    <tr>
+                        <td class="foo"></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <button type="submit">Add</button>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
 </div>
 </body>
