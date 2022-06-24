@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.security.Principal;
 import java.time.LocalTime;
@@ -129,9 +130,9 @@ public class UserPageController {
             String m = "bathhouse" + i;
             model.addAttribute(m, bathhouses.get(i));
         }
-        model.addAttribute("newBathhouse", new Bathhouse());
 
         CabinCreationDto cabinsForm = new CabinCreationDto();
+        cabinsForm.setCabin_number(cabin_number);
         for(int i = 0; i < cabin_number; i++){
             cabinsForm.addCabin(new Cabin());
         }
@@ -141,8 +142,9 @@ public class UserPageController {
     }
 
     @PostMapping("/user-page/update-bathhouse")
-    public String updateBathhouse(@ModelAttribute Bathhouse bathhouse){
-        userPageControllerService.updateBath(bathhouse);
+    public String updateBathhouse(@RequestParam("updatedimage")MultipartFile image,
+                                  @ModelAttribute("") Bathhouse bathhouse){
+        userPageControllerService.updateBath(bathhouse,image);
         return "redirect:/user-page/my-bathhouses?cabin_number=0";
     }
 }

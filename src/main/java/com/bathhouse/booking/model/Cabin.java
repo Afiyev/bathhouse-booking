@@ -30,6 +30,7 @@ public class Cabin {
     private Set<Reservation> reservations;
 
     public Cabin() {
+        this.schedule = new Schedule();
     }
 
     public Set<Reservation> getReservations() {

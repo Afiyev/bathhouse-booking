@@ -5,11 +5,13 @@ import java.util.Set;
 
 public class CabinCreationDto {
     private Set<Cabin> cabins;
+    private Bathhouse bathhouse;
     private int cabin_number;
 
     public CabinCreationDto() {
         this.cabins = new HashSet<>();
         this.cabin_number = 0;
+        this.bathhouse = new Bathhouse();
     }
 
     public void addCabin(Cabin cabin){
@@ -18,6 +20,14 @@ public class CabinCreationDto {
 
     public boolean isSetEmpty(){
         return this.cabins.isEmpty();
+    }
+
+    public Bathhouse getBathhouse() {
+        return bathhouse;
+    }
+
+    public void setBathhouse(Bathhouse bathhouse) {
+        this.bathhouse = bathhouse;
     }
 
     public int getCabin_number() {

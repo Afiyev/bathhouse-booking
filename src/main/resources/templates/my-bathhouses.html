@@ -136,14 +136,13 @@ color: darkslategray">Add your property or edit bathhouse details</p>
 
             <div class="user-page-baths">
 
-                <form th:object="${__${bathhouse+bathStat.index}__}" th:action="@{/user-page/update-bathhouse}"
-                      method="post">
+                <form th:object="${__${bathhouse+bathStat.index}__}" th:action="@{/user-page/update-bathhouse} "
+                      method="post" enctype="multipart/form-data">
                     <table>
                         <tr>
                             <td><label for="name">Name</label></td>
                             <td class="foo"></td>
-                            <td><input id="name" type="text" th:field="*{name}"
-                                       th:value="${bath.name}"></td>
+                            <td><input id="name" type="text" th:field="*{name}"></td>
                         </tr>
                         <tr>
                             <td class="foo"></td>
@@ -152,7 +151,7 @@ color: darkslategray">Add your property or edit bathhouse details</p>
                             <td><label for="city">City</label></td>
                             <td class="foo"></td>
                             <td>
-                                <input id="city" list="cities" type="text" th:field="*{city}" th:value="${bath.city}"
+                                <input id="city" list="cities" type="text" th:field="*{city}"
                                        pattern="Shieli|Qyzylorda|Almaty|Nur-Sultan|Shymkent|Taraz"
                                        title='Please select from list'
                                 />
@@ -172,7 +171,7 @@ color: darkslategray">Add your property or edit bathhouse details</p>
                         <tr>
                             <td><label for="address">Address</label></td>
                             <td class="foo"></td>
-                            <td><input id="address" type="text" th:field="*{address}" th:value="${bath.address}"></td>
+                            <td><textarea id="address" rows="2" cols="45" th:field="*{address}"/></td>
                         </tr>
                         <tr>
                             <td class="foo"></td>
@@ -180,8 +179,7 @@ color: darkslategray">Add your property or edit bathhouse details</p>
                         <tr>
                             <td><label for="phone">Phone number</label></td>
                             <td class="foo"></td>
-                            <td><input id="phone" type="text" th:field="*{phone_number}"
-                                       th:value="${bath.phone_number}"></td>
+                            <td><input id="phone" type="text" th:field="*{phone_number}"></td>
                         </tr>
                         <tr>
                             <td class="foo"></td>
@@ -189,25 +187,41 @@ color: darkslategray">Add your property or edit bathhouse details</p>
                         <tr>
                             <td><label for="description">Description</label></td>
                             <td class="foo"></td>
-                            <td><input id="description" type="text" th:field="*{description}"
-                                       th:value="${bath.description}"></td>
+                            <td><textarea id="description" rows="5" cols="45" th:field="*{description}"/></td>
                         </tr>
                         <tr>
                             <td class="foo"></td>
                         </tr>
                         <tr>
-                            <td><label for="image">Image path</label></td>
+                            <td><label>Image</label></td>
                             <td class="foo"></td>
-                            <td><input id="image" type="text" th:field="*{image}" th:value="${bath.image}"></td>
-                        </tr>
-                        <tr>
-                            <td class="foo"></td>
-                        </tr>
-                        <tr>
                             <td>
-                                <button type="submit">Update</button>
+                                <img style="max-width: 100%; height: 150px" th:src="*{image}" alt="bath-image">
+                                <input type="hidden" th:field="*{image}">
                             </td>
                         </tr>
+                        <tr>
+                            <td><label>New image</label></td>
+                            <td class="foo"></td>
+                            <td>
+                                <input type="file" accept="/image/*" name="updatedimage">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="foo"></td>
+                        </tr>
+                        <tr style="height: 20px">
+                            <td colspan="3"></td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                                <button style="height: 36px; background-color: #003580; border: none; width: 70px;
+                                                color: white; font-size: 14px; font-family: Tahoma"
+                                        type="submit">Update
+                                </button>
+                            </td>
+                        </tr>
+
                     </table>
                 </form>
             </div>
@@ -217,6 +231,7 @@ color: darkslategray">Add your property or edit bathhouse details</p>
     </div>
     <br><br>
     <hr>
+    <br><br>
 
     <p style="margin-left: 10%;
 font-size: 32px;
@@ -230,21 +245,22 @@ margin-top: 5px;
 font-family: Tahoma;
 color: darkslategray">First, you have to specify the number of cabins in your bath</p>
 
-    <form method="get" th:action="@{/user-page/my-bathhouses}" th:object="${cabins}">
-        <label for="cabin-number">Cabin number</label>
-        <input id="cabin-number" type="number" th:field="*{cabin_number}"/>
-        <button type="submit">Submit</button>
-    </form>
-    <!--    <button th:attr="style='margin-bottom: 30px; margin-top: 40px;' + ${cabins.isSetEmpty() ? 'pointer-events: none;' : ''}" id="button" type="button" onclick="myFunction('add-bath-dropdown')">Add new bathhouse</button>-->
     <div th:with="num=${#request.getParameter('cabin_number')}">
+        <form style="margin-left: 10%; margin-top: 30px; margin-bottom: 30px" method="get"
+              th:action="@{/user-page/my-bathhouses}" th:object="${cabins}">
+            <label for="cabin-number">Cabin number</label>
+            <input id="cabin-number" type="text" th:field="*{cabin_number}"/>
+            <button type="submit">Submit</button>
+        </form>
+
         <div th:attr="style='display : ' + ${(num == '0') ? 'none;' : 'block;'}" id="add-bath-dropdown"
              class="add-bath-dropdown">
-            <form th:object="${newBathhouse}" th:action="@{/user-page/add-bathhouse}" method="post">
+            <form th:object="${cabins}" th:action="@{/user-page/add-bathhouse}" method="post">
                 <table>
                     <tr>
                         <td><label for="newname">Name</label></td>
                         <td class="foo"></td>
-                        <td><input id="newname" type="text" th:field="*{name}"></td>
+                        <td><input id="newname" type="text" th:field="*{bathhouse.name}"></td>
                     </tr>
                     <tr>
                         <td class="foo"></td>
@@ -253,7 +269,7 @@ color: darkslategray">First, you have to specify the number of cabins in your ba
                         <td><label for="newcity">City</label></td>
                         <td class="foo"></td>
                         <td>
-                            <input id="newcity" list="cities2" type="text" th:field="*{city}"
+                            <input id="newcity" list="cities2" type="text" th:field="*{bathhouse.city}"
                                    pattern="Shieli|Qyzylorda|Almaty|Nur-Sultan|Shymkent|Taraz"
                                    title='Please select from list'
                             />
@@ -273,7 +289,7 @@ color: darkslategray">First, you have to specify the number of cabins in your ba
                     <tr>
                         <td><label for="newaddress">Address</label></td>
                         <td class="foo"></td>
-                        <td><input id="newaddress" type="text" th:field="*{address}"></td>
+                        <td><textarea id="newaddress" rows="2" cols="45" th:field="*{bathhouse.address}"/></td>
                     </tr>
                     <tr>
                         <td class="foo"></td>
@@ -281,7 +297,7 @@ color: darkslategray">First, you have to specify the number of cabins in your ba
                     <tr>
                         <td><label for="newphone">Phone number</label></td>
                         <td class="foo"></td>
-                        <td><input id="newphone" type="text" th:field="*{phone_number}"></td>
+                        <td><input id="newphone" type="text" th:field="*{bathhouse.phone_number}"></td>
                     </tr>
                     <tr>
                         <td class="foo"></td>
@@ -289,22 +305,64 @@ color: darkslategray">First, you have to specify the number of cabins in your ba
                     <tr>
                         <td><label for="newdescription">Description</label></td>
                         <td class="foo"></td>
-                        <td><input id="newdescription" type="text" th:field="*{description}"></td>
+                        <td><textarea id="newdescription" rows="5" cols="45" th:field="*{bathhouse.description}"/></td>
                     </tr>
                     <tr>
                         <td class="foo"></td>
                     </tr>
                     <tr>
-                        <td><label for="newimage">Image path</label></td>
+                        <td><label for="newimage">Image</label></td>
                         <td class="foo"></td>
-                        <td><input id="newimage" type="text" th:field="*{image}"></td>
+                        <td><input id="newimage" type="file" accept="image/*" name="newimage"/></td>
                     </tr>
-                    <tr>
-                        <td class="foo"></td>
+                    <tr style="height: 30px">
+                        <td colspan="3"></td>
                     </tr>
+                    <tr th:each="cab : ${cabins.cabins}">
+
+                        <table>
+                            <tr>
+                                <p th:text="${#ids.seq('Cabin #')}"/>
+                            </tr>
+                            <tr>
+                                <td style="width: 100px"><label> Cabin type </label></td>
+                                <td class="foo"></td>
+                                <td>
+                                    <input list="cabin-types" th:field="*{cabins[__${cabStat.index}__].capacity}"
+                                           placeholder="Cabin type"
+                                           pattern="Small|Medium|Big"
+                                           title='Please select from list'/>
+                                    <datalist id="cabin-types">
+                                        <option value="Small">
+                                            <span> For 2 people </span>
+                                        </option>
+                                        <option value="Medium">
+                                            <span> For 3 people </span>
+                                        </option>
+                                        <option value="Big">
+                                            <span> For 4 people </span>
+                                        </option>
+                                    </datalist>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="width: 100px"><label>Price per hour</label></td>
+                                <td class="foo"></td>
+                                <td><input type="text" th:field="*{cabins[__${cabStat.index}__].price}"></td>
+                            </tr>
+
+                            <tr style="height: 30px">
+                                <td colspan="3"></td>
+                            </tr>
+                        </table>
+                    </tr>
+
                     <tr>
                         <td>
-                            <button type="submit">Add</button>
+                            <button style="height: 36px; background-color: #003580; border: none; width: 70px;
+                                    color: white; font-size: 14px; font-family: Tahoma"
+                                    type="submit">Add
+                            </button>
                         </td>
                     </tr>
                 </table>
