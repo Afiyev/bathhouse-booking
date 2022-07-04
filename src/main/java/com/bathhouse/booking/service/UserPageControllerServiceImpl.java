@@ -12,6 +12,7 @@ import com.bathhouse.booking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -43,11 +44,13 @@ public class UserPageControllerServiceImpl implements UserPageControllerService 
     }
 
     @Override
+    @Transactional
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }
 
     @Override
+    @Transactional
     public void updateUser(User user, String username, String mobile) {
         user.setUsername(username);
         user.setMobile_number(mobile);
@@ -55,6 +58,7 @@ public class UserPageControllerServiceImpl implements UserPageControllerService 
     }
 
     @Override
+    @Transactional
     public void updateBath(Bathhouse bathhouse, MultipartFile image) {
         String fileName = uploadImage(image);
         if (fileName != null) {
@@ -64,6 +68,7 @@ public class UserPageControllerServiceImpl implements UserPageControllerService 
     }
 
     @Override
+    @Transactional
     public String uploadImage(MultipartFile image) {
         String upload_path = "C:\\java_projects\\source\\bathhouse-booking\\src\\main\\resources\\static\\images\\";
         String fileName = null;
@@ -81,6 +86,7 @@ public class UserPageControllerServiceImpl implements UserPageControllerService 
     }
 
     @Override
+    @Transactional
     public void addBathhouse(CabinCreationDto cabins, MultipartFile image, Principal principal) {
         User user = userRepository.findUserByUsername(principal.getName());
         Bathhouse bathhouse = cabins.getBathhouse();
@@ -97,6 +103,7 @@ public class UserPageControllerServiceImpl implements UserPageControllerService 
     }
 
     @Override
+    @Transactional
     public void addModelAttributes(User user, Model model, int cabin_number) {
         List<Bathhouse> bathhouses = bathhouseRepository.findAllByUser(user);
         CabinCreationDto cabinsForm = new CabinCreationDto();

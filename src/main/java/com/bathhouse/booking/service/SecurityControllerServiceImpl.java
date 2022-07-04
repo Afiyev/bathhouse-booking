@@ -7,6 +7,7 @@ import com.bathhouse.booking.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -25,6 +26,7 @@ public class SecurityControllerServiceImpl implements SecurityControllerService{
     }
 
     @Override
+    @Transactional
     public void saveUser(User user) {
         Set<Role> roles = new HashSet<>();
         roles.add(roleRepository.findById(2).get());
@@ -36,6 +38,7 @@ public class SecurityControllerServiceImpl implements SecurityControllerService{
     }
 
     @Override
+    @Transactional
     public User findUserByUsername(String username) {
         return userRepository.findUserByUsername(username);
     }

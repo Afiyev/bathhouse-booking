@@ -7,6 +7,7 @@ import com.bathhouse.booking.repository.BathhouseRepository;
 import com.bathhouse.booking.repository.RecommendationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
@@ -23,11 +24,13 @@ public class HomeControllerServiceImpl implements HomeControllerService{
     }
 
     @Override
+    @Transactional
     public List<Bathhouse> findAllBathhousesByCity(String city) {
         return bathhouseRepository.findAllByCity(city);
     }
 
     @Override
+    @Transactional
     public List<Integer> getListOfCountsOfBathhouses() {
         List<Integer> countsOfBathhouses = new ArrayList<>();
         for (Cities city : Cities.values()){
@@ -37,6 +40,7 @@ public class HomeControllerServiceImpl implements HomeControllerService{
     }
 
     @Override
+    @Transactional
     public List<Bathhouse> getRecommendedBathhouses() {
         List<Recommendation> recommendations = recommendationRepository.findAll();
         List<Bathhouse> recommendedBathhouses = new ArrayList<>();

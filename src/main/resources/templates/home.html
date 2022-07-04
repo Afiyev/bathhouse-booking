@@ -30,10 +30,12 @@
         <p id="p2"> Set search parameters </p>
     </div>
     <div class="search_outer-div">
-        <form id="search_inner-div" autocomplete="off">
-            <input id="search_input-1" list="cities" placeholder="City"
+        <form id="search_inner-div" method="get" action="/search" autocomplete="off">
+            <input id="search_input-1" list="cities" name="city" placeholder="City"
                    pattern="Shieli|Qyzylorda|Almaty|Nur-Sultan|Shymkent|Taraz"
-                   title='Please select from list'/>
+                   title='Please select from list'
+                    required
+            />
             <datalist id="cities">
                 <option value="Shieli">
                 <option value="Qyzylorda">
@@ -50,18 +52,16 @@
 
                 <div id="search_dropdown1" class="search_dropdown">
                     <label for="time">Time</label>
-                    <input id="time" type="time" step="3600" min="12:00" max="23:00" title="Opening hours : 12:00 - 23:00"/>
+                    <input id="time" name="time" type="time" step="3600" min="12:00" max="23:00" title="Opening hours : 12:00 - 23:00"/>
                     <br>
                     <br>
                     <label for="duration">Duration</label>
-                    <input id="duration" type="number" min="1" max="3" title="Maximum duration : 3 hours"/>
+                    <input id="duration" name="duration" type="number" min="1" max="3" title="Maximum duration : 3 hours"/>
                 </div>
             </div>
 
 
-
-
-            <input id="search_input-3"  list="cabin-types" placeholder="Cabin capacity"
+            <input id="search_input-3" name="capacity" list="cabin-types" placeholder="Cabin capacity"
                    pattern="Small|Medium|Big"
                    title='Please select from list'/>
             <datalist id="cabin-types">
@@ -86,7 +86,7 @@
                 <p> Almaty </p>
                 <p th:text="${countOfBathhouses.get(0)} + ' properties'"/>
             </div>
-            <a href="/" >
+            <a href="/search?city=Almaty" >
                 <img class="city-images" src="images/almaty.jpg" alt="Almaty">
             </a>
         </div>
@@ -95,7 +95,7 @@
                 <p> Shieli </p>
                 <p th:text="${countOfBathhouses.get(1)} + ' properties'"/>
             </div>
-            <a href="/" >
+            <a href="/search?city=Shieli" >
                 <img class="city-images" src="images/shieli.jpeg" alt="Shieli">
             </a>
         </div>
@@ -104,7 +104,7 @@
                 <p> Nursultan </p>
                 <p th:text="${countOfBathhouses.get(2)} + ' properties'"/>
             </div>
-            <a href="/" >
+            <a href="/search?city=Nur-Sultan" >
                 <img class="city-images" src="images/astana.jpg" alt="Astana">
             </a>
         </div>
@@ -115,7 +115,7 @@
                     <p> Shymkent </p>
                     <p th:text="${countOfBathhouses.get(3)} + ' properties'"/>
                 </div>
-                <a href="/" >
+                <a href="/search?city=Shymkent" >
                     <img class="city-images" src="images/shymkent.jpg" alt="Almaty">
                 </a>
             </div>
@@ -124,7 +124,7 @@
                     <p> Qyzylorda </p>
                     <p th:text="${countOfBathhouses.get(4)} + ' properties'"/>
                 </div>
-                <a href="/" >
+                <a href="/search?city=Qyzylorda" >
                     <img class="city-images" src="images/qyzylorda.jpg" alt="Qyzylorda">
                 </a>
             </div>
@@ -133,7 +133,7 @@
                     <p> Taraz </p>
                     <p th:text="${countOfBathhouses.get(5)} + ' properties'"/>
                 </div>
-                <a href="/" >
+                <a href="/search?city=Taraz" >
                     <img class="city-images" src="images/taraz.jpg" alt="Taraz">
                 </a>
             </div>

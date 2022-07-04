@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        BathhouseBooking | Book your health | BathhouseBooking.com
+    </title>
+    <link rel="shortcut icon" href="images/sauna.png" type="image/png">
+    <link rel="stylesheet" href="css/home.css">
+    <script src="js/my-scripts.js"></script>
+</head>
+<body style="top: 0;">
+<div class="header">
+    <div class="header_logo">
+        <a href="/" style="text-decoration: none; color: white"> BathhouseBooking.com </a>
+    </div>
+    <div class="header_user-action">
+        <button class="list-property-button" type="button"
+                onclick="window.location.href='/user-page/my-bathhouses?cabin_number=0'"> List your property
+        </button>
+        &nbsp
+        <button class="register-login" type="button" onclick="window.location.href='/register'"> Register</button>
+        &nbsp
+        <button class="register-login" type="button" onclick="window.location.href='/login'"> Sign in</button>
+
+    </div>
+</div>
+<div style="height: 40px" class="header2">
+</div>
+<div style="margin-left: 12%; background-color: #feba02; z-index: 8; position: sticky; top: 60px;
+            padding: 20px; border-radius: 4px; margin-top: 10px; width: 170px;">
+    <p style="padding-top: 0; margin-top: 0; font-family: Tahoma;
+              font-size: 20px;"> Search </p>
+    <form action="/search" method="get" style="font-family: Tahoma; font-size: 12px">
+        <label for="cityinput">Destination name</label><br>
+        <input style="height: 30px" id="cityinput" list="cities" name="city" placeholder="City"
+               pattern="Shieli|Qyzylorda|Almaty|Nur-Sultan|Shymkent|Taraz"
+               title='Please select from list'
+                required
+        />
+        <datalist id="cities">
+            <option value="Shieli">
+            <option value="Qyzylorda">
+            <option value="Almaty">
+            <option value="Nur-Sultan">
+            <option value="Shymkent">
+            <option value="Taraz">
+        </datalist>
+        <br><br>
+        <label for="timeinput">Time</label><br>
+        <input style="height: 30px" id="timeinput" name="time" type="time" step="3600" min="12:00" max="23:00"
+               title="Opening hours : 12:00 - 23:00"/>
+
+        <br><br>
+        <label for="capacity">Capacity</label><br>
+        <input style="height: 30px" id="capacity" name="capacity" list="cabin-types" placeholder="Cabin capacity"
+               pattern="Small|Medium|Big"
+               title='Please select from list'/>
+        <datalist id="cabin-types">
+            <option value="Small">
+                <span> For 2 people </span>
+            </option>
+            <option value="Medium">
+                <span> For 3 people </span>
+            </option>
+            <option value="Big">
+                <span> For 4 people </span>
+            </option>
+        </datalist>
+        <br><br>
+        <button style="height: 36px; width: 100%; border: none; background-color: #1974D1;
+                        color: white; border-radius: 3px" type="submit"> Search  </button>
+
+    </form>
+</div>
+<table style="margin-left: 27%; width: 61%;" class="rec-table" th:each="bath : ${recommendedBathhouses}">
+    <tr>
+        <td>
+            <div class="rec-bath">
+                <div class="bath-img">
+                    <img th:src="${bath.image}" alt="bath-image">
+                </div>
+                <div class="bath-description">
+                    <p id="des-name" th:text="${bath.name}"/>
+                    <p id="des-location" th:text="${bath.city} + ', ' + ${bath.address}"/>
+                    <p id="des-description" th:text="${bath.description}"/>
+                    <a  style="color: #2B2730" th:href="'tel:' + ${bath.phone_number}">
+                        <p id="des-phone" th:text="'Phone number : ' + ${bath.phone_number}"/>
+                    </a>
+
+                </div>
+
+                <div class="bath-rating">
+                    <p id="rating-t">Rating</p>
+                    <p id="rating-n" th:text="${bath.rating}"></p>
+                    <button type="button" id="rating-b"
+                            th:attr="onclick='myFunction(\'' + ${#ids.next('book_drop_id')}+  '\');'">Book now</button>
+
+                </div>
+            </div>
+        </td>
+    </tr>
+    <div id="empty_div"></div>
+    <div style="margin-left: calc(26% + 11px); width: calc(60% + 4px);" th:id="${#ids.seq('book_drop_id')}"  th:class="${#ids.seq('book_drop_class')}">
+        <div style="margin-top: 40px; font-size: 14px;  display: block;
+                 padding-left: 230px">
+            <img src="/images/red.jpg" alt="red" style="width: 16px; height: 16px"/>
+            &nbsp;Booked&nbsp;&nbsp;&nbsp;
+            <img src="/images/blue.png" alt="blue" style="width: 16px; height: 16px"/>
+            &nbsp;Available
+            <br>
+        </div>
+        <div style="display: flex" th:each="cabin: ${bath.cabins}">
+            <div style="display: inline-block; font-size: 14px; font-weight: bolder;
+                        margin-left: 53px; margin-top: 10px; padding-left: 10px; width: 150px  ;
+                        border: 1px solid lightgray; margin-bottom: 15px"
+            >
+                <p th:text="'Cabin number:  '+ ${cabin.id}"/>
+                <p th:text="'Cabin type:  '+ ${cabin.capacity}"/>
+                <p th:text="'Price per hours:  '+ ${cabin.price}"/>
+            </div>
+            <div style="margin-left: 43px; margin-top: 10px; display: inline-block; width : 500px;
+                        height: 50px;  margin-bottom: 15px"
+            >
+                <div style=" display: inline-block; "
+                     th:each="isbooked : ${(cabin.schedule).isBooked}"
+                >
+                    <button type="button"
+                            th:attr="style=' margin-right: 5px; margin-bottom: 5px; margin-top: 2px; height: 30px;   width: 100px; border: none; color: white; font-size: 11px; background-color: ' + ${isbooked? 'red; pointer-events: none' : '#009fe3; cursor: pointer'}"
+                    >
+                        <span th:text="${(cabin.schedule).isBooked.size() + isbookedStat.index} + ':00'"></span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</table>
+</body>
+</html>
