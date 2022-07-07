@@ -24,6 +24,8 @@ public class HomeController {
         List<Integer> countOfBathhouses = homeControllerService.getListOfCountsOfBathhouses();
         List<Bathhouse> recommendedBathhouses = homeControllerService.getRecommendedBathhouses();
 
+
+
         model.addAttribute("countOfBathhouses", countOfBathhouses);
         model.addAttribute("recommendedBathhouses", recommendedBathhouses);
         return "home";

@@ -100,35 +100,56 @@ color: darkslategray">There are your actual bookings and history</p>
     <div class="user-page-reservations">
       <table>
         <tr>
-          <td>Booking id</td>
-          <td><span th:text="${reservation.id}"/></td>
+            <td style="font-weight: bolder; padding-top: 20px" >Booking id</td>
+          <td style="padding-top: 20px"><span th:text="${reservation.id}"/></td>
         </tr>
         <tr>
-          <td>Bathhouse</td>
+          <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bolder">Bathhouse</td>
           <td><span th:text="${((reservation.cabin).bathhouse).name}"/></td>
         </tr>
         <tr>
-          <td>Location</td>
+          <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bolder" >Location</td>
           <td><span th:text="${((reservation.cabin).bathhouse).city + ', ' + ((reservation.cabin).bathhouse).address}"/></td>
         </tr>
         <tr>
-          <td>Bathhouse phone number</td>
+          <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bolder">Bathhouse phone number</td>
           <td><span th:text="${((reservation.cabin).bathhouse).phone_number}"/></td>
         </tr>
         <tr>
-          <td>Cabin id</td>
+          <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bolder">Cabin id</td>
           <td><span th:text="${(reservation.cabin).id}"/></td>
         </tr>
         <tr>
-          <td>Cabin type</td>
+          <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bolder">Cabin type</td>
           <td><span th:text="${(reservation.cabin).capacity}"/></td>
         </tr>
         <tr>
-          <td>Price</td>
+          <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bolder">Price</td>
           <td><span th:text="${(reservation.cabin).price}"/></td>
         </tr>
         <tr>
-          <td>Time</td>
+          <td colspan="2"><hr></td>
+        </tr>
+        <tr>
+          <td style="font-weight: bolder">Time</td>
           <td><span th:text="${reservation.time}"/></td>
         </tr>
       </table>
