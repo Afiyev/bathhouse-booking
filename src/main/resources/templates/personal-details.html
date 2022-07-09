@@ -93,18 +93,24 @@ font-size: 16px;
 margin-top: 5px;
 font-family: Tahoma;
 color: darkslategray">There you can update info</p>
-    <form th:action="@{/user-page/personal-details}" method="post">
+    <form th:object="${user}" th:action="@{/user-page/personal-details}" method="post">
         <table>
             <tr>
                 <td><label for="username">Username</label></td>
                 <td class="foo"></td>
-                <td><input id="username" type="text" th:field="${user.username}"></td>
+                <td>
+                    <input id="username" type="text" th:field="*{username}">
+                    <div style="font-size: 11px; color: dimgray;" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+                </td>
             </tr>
             <tr><td class="foo"></td></tr>
             <tr>
                 <td><label for="mobile">Mobile number</label></td>
                 <td class="foo"></td>
-                <td><input id="mobile" type="text" th:field="${user.mobile_number}"></td>
+                <td>
+                    <input id="mobile" type="text" th:field="*{mobile_number}">
+                    <div style="font-size: 11px; color: dimgray;" th:if="${#fields.hasErrors('mobile_number')}" th:errors="*{mobile_number}"></div>
+                </td>
             </tr>
             <tr><td class="foo"></td></tr>
             <tr>

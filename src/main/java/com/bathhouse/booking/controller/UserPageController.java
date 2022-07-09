@@ -2,9 +2,12 @@ package com.bathhouse.booking.controller;
 
 import com.bathhouse.booking.model.*;
 import com.bathhouse.booking.service.UserPageControllerService;
+import com.bathhouse.booking.validator.PersonalDetailsValidator;
+import com.bathhouse.booking.validator.UserValidator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -14,10 +17,12 @@ import java.security.Principal;
 public class UserPageController {
 
     private final UserPageControllerService userPageControllerService;
+    private final PersonalDetailsValidator userValidator;
 
     @Autowired
-    public UserPageController(UserPageControllerService userPageControllerService) {
+    public UserPageController(UserPageControllerService userPageControllerService, PersonalDetailsValidator userValidator) {
         this.userPageControllerService = userPageControllerService;
+        this.userValidator = userValidator;
     }
 
     @GetMapping("/user-page")
@@ -35,7 +40,12 @@ public class UserPageController {
     }
 
     @PostMapping("/user-page/personal-details")
-    public String postPersonalDetails(@ModelAttribute User updatedUser, Principal principal){
+    public String postPersonalDetails(@ModelAttribute("user") User updatedUser, Principal principal, BindingResult bindingResult, Model model){
+        userValidator.validate(updatedUser, bindingResult);
+        if (bindingResult.hasErrors()) {
+            return "personal-details";
+        }
+
         User user = userPageControllerService.findUserByUsername(principal.getName());
         userPageControllerService.updateUser(user, updatedUser.getUsername(), updatedUser.getMobile_number());
         return "redirect:/logout";
